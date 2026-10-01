@@ -112,7 +112,7 @@ const OST: Record<string, string> = { paid: 'Оплачен', in_work: 'В ра�
   </div>
 </template>
 <style scoped>
-.chat { display:grid; grid-template-columns:minmax(260px, 340px) minmax(0, 1fr); gap:14px; height:calc(100vh - 150px); min-height:520px }
+.chat { display:grid; grid-template-columns:minmax(260px, 340px) minmax(0, 1fr); gap:14px; height:calc(100vh - 230px); min-height:520px }
 .chat-list { display:flex; flex-direction:column; gap:10px; padding:12px; min-height:0 }
 .chat-filters { display:flex; flex-wrap:wrap; gap:4px }
 .chat-items { overflow:auto; display:flex; flex-direction:column; gap:4px; min-height:0; margin:0 -6px; padding:0 6px }

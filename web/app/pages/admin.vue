@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import logo from '~/assets/logo.svg?url'
-// оболочка админки: проверка входа, боковое меню со счётчиками, обязательная смена пароля
+// оболочка админки: проверка входа, верхняя навигация в два уровня со счётчиками, быстрый поиск, обязательная смена пароля
 const { api, me, can } = useAdm()
 const route = useRoute()
 const ready = ref(false)
@@ -20,22 +20,50 @@ onUnmounted(() => clearInterval(cT))
 onMounted(async () => { await loadMe(); ready.value = true; cT = setInterval(() => { if (!isLogin.value && document.visibilityState === 'visible') loadCounts() }, 30000); if (me.value.admin?.must_change) pw.open = true; else loadCounts() })
 watch(() => route.path, () => { if (!isLogin.value) loadCounts() })
 
-const nav = computed(() => [
-  { to: '/admin', label: 'Сводка', icon: 'pi-chart-bar', perm: 'summary', exact: true },
-  { to: '/admin/orders', label: 'Заказы', icon: 'pi-shopping-bag', perm: 'orders', n: counts.value.orders_open + (counts.value.orders_need_info || 0) || 0 },
-  { to: '/admin/kyc', label: 'Верификация', icon: 'pi-id-card', perm: 'kyc', n: counts.value.kyc_pending, warn: true },
-  { to: '/admin/refunds', label: 'Возвраты', icon: 'pi-replay', perm: 'refunds', n: counts.value.refunds_new, warn: true },
-  { to: '/admin/chats', label: 'Чаты', icon: 'pi-comments', perm: 'chats', n: counts.value.chats_waiting, warn: true },
-  { to: '/admin/users', label: 'Пользователи', icon: 'pi-users', perm: 'users' },
-  { to: '/admin/reviews', label: 'Отзывы', icon: 'pi-star', perm: 'reviews' },
-  { to: '/admin/analytics', label: 'Аналитика', icon: 'pi-chart-line', perm: 'analytics' },
-  { to: '/admin/products', label: 'Товары и цены', icon: 'pi-box', perm: 'products' },
-  { to: '/admin/export', label: 'Выгрузки CSV', icon: 'pi-download', perm: 'export' },
-  { to: '/admin/admins', label: 'Админы', icon: 'pi-shield', perm: 'admins' },
-  { to: '/admin/settings', label: 'Настройки', icon: 'pi-cog', perm: 'settings' },
-  { to: '/admin/audit', label: 'Журнал действий', icon: 'pi-history', perm: 'audit' },
-].filter(i => can(i.perm)))
-
+// навигация в два уровня: группы сверху, разделы группы — вкладками под ними
+const GROUPS = [
+  { id: 'queue', label: 'Очередь', icon: 'pi-inbox', items: [
+    { to: '/admin/orders', label: 'Заказы', perm: 'orders', n: () => (counts.value.orders_open || 0) + (counts.value.orders_need_info || 0) },
+    { to: '/admin/kyc', label: 'Верификация', perm: 'kyc', n: () => counts.value.kyc_pending, warn: true },
+    { to: '/admin/refunds', label: 'Возвраты', perm: 'refunds', n: () => counts.value.refunds_new, warn: true },
+    { to: '/admin/chats', label: 'Чаты', perm: 'chats', n: () => counts.value.chats_waiting, warn: true },
+  ] },
+  { id: 'people', label: 'Клиенты', icon: 'pi-users', items: [
+    { to: '/admin/users', label: 'Пользователи', perm: 'users' },
+    { to: '/admin/reviews', label: 'Отзывы', perm: 'reviews' },
+  ] },
+  { id: 'shop', label: 'Витрина', icon: 'pi-box', items: [
+    { to: '/admin/products', label: 'Товары и цены', perm: 'products' },
+  ] },
+  { id: 'data', label: 'Цифры', icon: 'pi-chart-line', items: [
+    { to: '/admin', label: 'Сводка', perm: 'summary', exact: true },
+    { to: '/admin/analytics', label: 'Аналитика', perm: 'analytics' },
+    { to: '/admin/export', label: 'Выгрузки CSV', perm: 'export' },
+  ] },
+  { id: 'sys', label: 'Команда', icon: 'pi-shield', items: [
+    { to: '/admin/admins', label: 'Админы', perm: 'admins' },
+    { to: '/admin/settings', label: 'Настройки', perm: 'settings' },
+    { to: '/admin/audit', label: 'Журнал действий', perm: 'audit' },
+  ] },
+]
+const isOn = (i: any) => i.exact ? route.path === i.to : route.path.startsWith(i.to) && !(i.to === '/admin' && route.path !== '/admin')
+const groups = computed(() => GROUPS.map(g => {
+  const items = g.items.filter(i => can(i.perm)).map(i => ({ ...i, count: i.n ? i.n() || 0 : 0 }))
+  return { ...g, items, count: items.reduce((a, i) => a + (i.warn || g.id === 'queue' ? i.count : 0), 0), to: items[0]?.to }
+}).filter(g => g.items.length))
+const current = computed(() => groups.value.find(g => g.items.some(isOn)) || groups.value[0])
+const queueTotal = computed(() => groups.value.find(g => g.id === 'queue')?.count || 0)
+const initials = computed(() => (me.value.admin?.name || me.value.admin?.login || '?').split(/\s+/).map((w: string) => w[0]).join('').slice(0, 2).toUpperCase())
+const menu = ref(false)
+const closeMenu = (e: MouseEvent) => { if (!(e.target as HTMLElement)?.closest?.('.tg-me')) menu.value = false }
+onMounted(() => document.addEventListener('click', closeMenu)); onUnmounted(() => document.removeEventListener('click', closeMenu))
+const search = ref('')
+function go() {
+  const v = search.value.trim(); if (!v) return
+  const isOrder = /^tg-/i.test(v)
+  navigateTo({ path: isOrder && can('orders') ? '/admin/orders' : '/admin/users', query: { q: v, ...(isOrder ? { status: 'all' } : {}) } })
+  search.value = ''
+}
 async function logout() { await $fetch('/api/admin/auth/logout', { method: 'POST' }); me.value = { admin: null, perms: [] }; navigateTo('/admin/login') }
 const pw = reactive({ open: false, old: '', new: '', busy: false })
 async function changePw() {
@@ -48,20 +76,35 @@ async function changePw() {
   <Toast position="top-right" />
   <ConfirmDialog />
   <NuxtPage v-if="isLogin" />
-  <div v-else-if="ready && me.admin" class="adm">
-    <aside class="adm-side">
-      <div class="adm-brand"><img :src="logo" alt="">tugrik <small>админка</small></div>
-      <nav class="adm-nav">
-        <NuxtLink v-for="i in nav" :key="i.to" :to="i.to" :class="{ 'is-on': i.exact ? route.path === i.to : route.path.startsWith(i.to) }" exact-active-class="x-exact" active-class="x-active">
-          <i :class="['pi', i.icon]" />{{ i.label }}<span v-if="i.n" :class="['n', { warn: i.warn }]">{{ i.n }}</span>
+  <div v-else-if="ready && me.admin" class="tg">
+    <header class="tg-top">
+      <NuxtLink to="/admin" class="tg-brand"><img :src="logo" alt=""><span>tugrik</span><small>control</small></NuxtLink>
+      <nav class="tg-groups" aria-label="Разделы">
+        <NuxtLink v-for="g in groups" :key="g.id" :to="g.to" :class="['tg-g', { on: current?.id === g.id }]">
+          <i :class="['pi', g.icon]" /><span>{{ g.label }}</span><b v-if="g.count" class="tg-n">{{ g.count }}</b>
         </NuxtLink>
       </nav>
-      <div class="adm-me">
-        <div><b>{{ me.admin.name }}</b><div class="muted mono">{{ me.admin.login }} · {{ ROLE[me.admin.role] }}</div></div>
-        <Button size="small" severity="secondary" outlined label="Сменить пароль" icon="pi pi-key" @click="pw.open = true" />
-        <Button size="small" severity="secondary" text label="Выйти" icon="pi pi-sign-out" @click="logout" />
+      <form class="tg-search" role="search" @submit.prevent="go">
+        <i class="pi pi-search" /><input v-model="search" placeholder="Номер TG-… или клиент" aria-label="Быстрый поиск">
+        <kbd>↵</kbd>
+      </form>
+      <div class="tg-me">
+        <button type="button" class="tg-av" :aria-expanded="menu" @click="menu = !menu">{{ initials }}</button>
+        <div v-if="menu" class="tg-menu" @click="menu = false">
+          <div class="tg-menu-h"><b>{{ me.admin.name }}</b><span class="mono">{{ me.admin.login }} · {{ ROLE[me.admin.role] }}</span></div>
+          <button type="button" @click="pw.open = true"><i class="pi pi-key" />Сменить пароль</button>
+          <button type="button" @click="logout"><i class="pi pi-sign-out" />Выйти</button>
+        </div>
       </div>
-    </aside>
+    </header>
+    <div class="tg-sub">
+      <nav class="tg-tabs" aria-label="Подразделы">
+        <NuxtLink v-for="i in current?.items" :key="i.to" :to="i.to" :class="['tg-t', { on: isOn(i) }]">
+          {{ i.label }}<span v-if="i.count" :class="['tg-c', { warn: i.warn }]">{{ i.count }}</span>
+        </NuxtLink>
+      </nav>
+      <NuxtLink v-if="queueTotal && current?.id !== 'queue'" :to="groups.find(g => g.id === 'queue')?.to || '/admin/orders'" class="tg-q"><i />В очереди {{ queueTotal }}</NuxtLink>
+    </div>
     <main class="adm-main">
       <div v-if="me.admin.must_change" class="banner"><i class="pi pi-exclamation-triangle warn" />
         <span>Вы вошли с временным паролем{{ me.admin.login === 'admin' ? ' admin/admin' : '' }}. Смените его, прежде чем работать дальше.</span>

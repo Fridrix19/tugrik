@@ -15,6 +15,7 @@ let t: any; watch(() => f.q, () => { clearTimeout(t); t = setTimeout(() => { f.f
 watch(() => f.status, () => { f.first = 0; load() })
 watch(period, () => { f.first = 0; load() }, { deep: true })
 onMounted(load)
+watch(() => route.query.q, v => { if (v != null) f.q = String(v) })
 </script>
 <template>
   <div class="adm-head"><div><span class="eyebrow">Заказы</span><h1>Заказы</h1></div></div>

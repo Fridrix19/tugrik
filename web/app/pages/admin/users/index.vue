@@ -1,7 +1,8 @@
 <script setup lang="ts">
 const { api } = useAdm()
+const route = useRoute()
 const rows = ref<any[]>([]), total = ref(0), loading = ref(false)
-const f = reactive({ q: '', kyc: null as string | null, first: 0 })
+const f = reactive({ q: String(route.query.q || ''), kyc: null as string | null, first: 0 })
 async function load() {
   loading.value = true
   const r: any = await api('GET', `/users?limit=50&offset=${f.first}&q=${encodeURIComponent(f.q)}${f.kyc ? '&kyc=' + f.kyc : ''}`).finally(() => loading.value = false)
@@ -9,6 +10,7 @@ async function load() {
 }
 let t: any; watch(() => f.q, () => { clearTimeout(t); t = setTimeout(() => { f.first = 0; load() }, 300) })
 watch(() => f.kyc, () => { f.first = 0; load() }); onMounted(load)
+watch(() => route.query.q, v => { if (v != null) f.q = String(v) })
 </script>
 <template>
   <div class="adm-head"><div><span class="eyebrow">Клиенты</span><h1>Пользователи</h1></div><span class="muted">{{ total }}</span></div>
