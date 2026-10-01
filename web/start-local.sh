@@ -18,7 +18,10 @@ export PORT="${PORT:-3000}"
 
 psql -h localhost -lqt | cut -d'|' -f1 | grep -qw tugrik || { createdb -h localhost tugrik && echo "✓ создана база tugrik"; }
 [ -d node_modules ] || npm ci
-[ -f .output/server/index.mjs ] || npm run build
+REV=$(git rev-parse HEAD 2>/dev/null || echo none)
+if [ ! -f .output/server/index.mjs ] || [ "$(cat .output/.rev 2>/dev/null)" != "$REV" ]; then
+  echo "… собираю проект (код обновился)"; npm run build && echo "$REV" > .output/.rev
+fi
 npm run migrate
 echo "✓ Сайт: http://localhost:$PORT   Админка: http://localhost:$PORT/admin (admin / admin)"
 exec node .output/server/index.mjs
