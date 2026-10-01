@@ -28,3 +28,13 @@ cd web && npm ci && npm run build # сервер отдаёт _proto/ и API /ap
 ## Отдельный стенд
 
 У Tugrik своя база, свои админы и пользователи. Для стенда: новый проект в Neon, новый Web Service в Render из этого репозитория (настройки — в `render.yaml`), свои значения `NUXT_DATABASE_URL`, `NUXT_SECRET`, почты и `NUXT_PUBLIC_SITE_URL`. Первый вход в админку `/admin` — admin / admin, затем смена пароля.
+
+## Запуск на своём компьютере (Mac)
+
+Нужны Node.js 20+ и [Postgres.app](https://postgresapp.com) (Initialize → Start). Затем:
+
+```
+cd web && bash start-local.sh
+```
+
+Скрипт сам создаст базу `tugrik`, поставит зависимости, соберёт проект, применит миграции и запустит сервер: сайт — http://localhost:3000, админка — http://localhost:3000/admin (admin / admin, затем смена пароля). Код регистрации показывается на экране, письма — в логе.
