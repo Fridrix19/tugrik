@@ -1,24 +1,23 @@
 <main>
-  <section class="hero wrap home-hero">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow">Тугрик за тугриком — без зарубежной карты</span>
-        <h1>Платите за ChatGPT, Netflix и Steam рублями</h1>
-        <p>Выпустим долларовую виртуальную карту за 15 минут и подскажем, как привязать её к сервису. {{SVC_TOTAL}} сервисов в каталоге, оплата по QR через СБП.</p>
-        <form class="hero-search" action="{{BASE}}catalog.html" role="search" id="heroSearch">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
-          <input type="search" name="q" id="heroQ" placeholder="Какой сервис оплатить? Например, Figma" autocomplete="off" aria-label="Найти сервис">
-          <button type="submit" class="btn btn-primary btn-sm">Найти</button>
-        </form>
-        <div class="facts">
-          <div class="fact"><b>{{SVC_TOTAL}}</b><span>сервисов</span></div>
-          <div class="fact"><b>15 мин</b><span>до готовой карты</span></div>
-          <div class="fact"><b>0 ₽</b><span>за пополнение</span></div>
-        </div>
-      </div>
-
-      <div class="hero-visual">
-        <div class="card-stage" id="cardStage" role="img" aria-label="Виртуальная карта Tugrik">
+  <section class="wrap hx hx-home">
+    <div class="hh-copy">
+      <span class="eyebrow">Тугрик за тугриком — без зарубежной карты</span>
+      <h1>Платите за <span class="hh-mark">ChatGPT, Netflix и Steam</span> рублями</h1>
+      <p>Выпустим долларовую виртуальную карту за 15 минут и подскажем, как привязать её к сервису. Оплата по QR через СБП.</p>
+      <form class="hero-search" action="{{BASE}}catalog.html" role="search" id="heroSearch">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+        <input type="search" name="q" id="heroQ" placeholder="Какой сервис оплатить? Например, Figma" autocomplete="off" aria-label="Найти сервис">
+        <button type="submit" class="btn btn-primary btn-sm">Найти</button>
+      </form>
+      <ul class="hh-facts">
+        <li><b>{{SVC_TOTAL}}</b> сервисов</li>
+        <li><b>15 мин</b> до готовой карты</li>
+        <li><b>0 ₽</b> за пополнение</li>
+      </ul>
+    </div>
+    <div class="hh-visual">
+      <div class="hh-river" aria-hidden="true"><div class="hh-track" id="hhTrack"></div></div>
+      <div class="card-stage" id="cardStage" role="img" aria-label="Виртуальная карта Tugrik">
           <div class="card-float">
             <div class="card-tilt" id="cardTilt">
               <div class="card-spin">
@@ -43,20 +42,19 @@
             </div>
           </div>
           <div class="card-shadow" aria-hidden="true"></div>
-          <div class="hero-sticker" aria-hidden="true"><b>+500 ₽</b><span>бонус за верификацию</span></div>
-        </div>
+        <div class="hero-sticker" aria-hidden="true"><b>+500 ₽</b><span>бонус за верификацию</span></div>
       </div>
     </div>
   </section>
 
   <div class="wrap stack">
     <!-- популярное: лента логотипов -->
-    <section class="panel reveal home-pop" id="popular">
+    <section class="reveal home-pop" id="popular">
       <div class="section-row">
         <div class="section-head"><span class="eyebrow">Популярное</span><h2>Чем платят чаще всего</h2></div>
         <a class="btn btn-ghost btn-sm" href="{{BASE}}catalog.html">Все {{SVC_TOTAL}} сервисов</a>
       </div>
-      <div class="card-grid" id="homePopular"></div>
+      <div class="pop-grid" id="homePopular"></div>
     </section>
 
     <!-- как это работает: тёмная полоса -->
@@ -74,10 +72,13 @@
       <a class="btn btn-lime" href="{{BASE}}how-it-works.html">Подробнее о процессе</a>
     </section>
 
-    <!-- разделы каталога -->
-    <section class="panel reveal" id="cats">
-      <div class="section-head"><span class="eyebrow">Каталог</span><h2>Разделы</h2><p>Внутри — цены в рублях и пошаговая привязка для каждого сервиса.</p></div>
-      <div class="card-grid home-cats" id="homeCats"></div>
+    <!-- разделы каталога: без подложки -->
+    <section class="reveal home-dirs" id="cats">
+      <div class="section-row">
+        <div class="section-head"><span class="eyebrow">Каталог</span><h2>Разделы</h2><p>Внутри — цены в рублях и пошаговая привязка для каждого сервиса.</p></div>
+        <a class="btn btn-ghost btn-sm" href="{{BASE}}catalog.html">Весь каталог</a>
+      </div>
+      <div class="dirs" id="homeCats"></div>
     </section>
 
     <!-- почему tugrik -->

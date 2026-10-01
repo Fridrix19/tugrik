@@ -428,6 +428,28 @@ window.MC = (function(){
     });
   }
 
+
+  /* — разделы каталога: плитки с крупным числом и стопкой логотипов (главная и каталог) — */
+  function dirTiles(el, META, o){
+    if (!el) return; o = o || {};
+    var base = o.base || '', GO = '<span class="dir-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>';
+    var vc = document.createElement('a'); vc.className = 'dir dir-vc'; vc.href = base + 'virtual-card.html';
+    vc.innerHTML = '<div class="dir-vc-copy"><span class="dir-k">Для любого сервиса</span><h3>Виртуальная карта</h3><p>Долларовая карта без привязки к каталогу. Выпуск за 15 минут, пополнение по СБП.</p><div class="dir-chips"><span>USD</span><span>$50–200</span><span>многоразовая</span></div></div>'
+      + '<div class="dir-mini" aria-hidden="true"><span class="dm-back"></span><span class="dm-card"><i class="dm-chip"></i><b>tugrik</b><em>4021 •••• 7788</em></span></div>' + GO;
+    el.appendChild(vc);
+    CATALOG.categories.forEach(function(c){
+      var m = (META && META.cats && META.cats[c.id]) || { text: '', top: [] }, shown = 0;
+      var logos = (m.top || []).slice(0, 4).map(function(n){ var s = CATALOG.services.find(function(x){ return x.n === n; }); if (!s) return ''; shown++; return '<img alt="' + s.n + '" title="' + s.n + '"' + (s.d ? ' class="on-dark"' : '') + ' src="' + s.l + '">'; }).join('');
+      var rest = c.count - shown;
+      var a = document.createElement('a'); a.className = 'dir'; a.href = base + 'section/' + c.id + '/index.html';
+      a.innerHTML = '<div class="dir-top"><span class="dir-n">' + c.count + '</span><span class="dir-nw">' + plural(c.count, ['сервис','сервиса','сервисов']) + '</span></div>' + GO
+        + '<div class="dir-logos">' + logos + (rest > 0 ? '<span class="more">+' + rest + '</span>' : '') + '</div>'
+        + '<h3>' + c.name + '</h3><p>' + (m.text || '') + '</p>'
+        + (m.from ? '<span class="dir-from" data-price-cat="' + c.id + '">от <b>$' + m.from + '</b>' + (m.monthly ? ' в месяц' : '') + '</span>' : '');
+      el.appendChild(a);
+    });
+  }
+
   initPaybar();
   initTheme();
   initSession();
@@ -436,5 +458,5 @@ window.MC = (function(){
   initTrack();
   initNumbers();
 
-  return { CATALOG: CATALOG, RATE: 80.2254, charged: charged, reduce: reduce, usd: usd, rub: rub, bump: bump, plural: plural, $: $, initShowcase: initShowcase, initReveal: initReveal, api: api, isLive: isLive, kop: kop, uid: uid, me: me, checkout: checkout, liveCatalog: liveCatalog, slugOf: slugOf, vcPricing: vcPricing, site: site, contacts: CONTACTS, docs: DOCS, applyDocs: applyDocs, recipient: recipient, initReviews: initReviews, initFav: initFav };
+  return { CATALOG: CATALOG, RATE: 80.2254, charged: charged, reduce: reduce, usd: usd, rub: rub, bump: bump, plural: plural, $: $, initShowcase: initShowcase, initReveal: initReveal, api: api, isLive: isLive, kop: kop, uid: uid, me: me, checkout: checkout, liveCatalog: liveCatalog, slugOf: slugOf, vcPricing: vcPricing, site: site, contacts: CONTACTS, docs: DOCS, applyDocs: applyDocs, recipient: recipient, initReviews: initReviews, initFav: initFav, dirTiles: dirTiles };
 })();

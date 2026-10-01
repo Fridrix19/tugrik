@@ -51,6 +51,14 @@
     b.addEventListener('click', function(){ select(it, true); if (window.innerWidth <= 760) $('supAnswer').scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'}); });
     wrap.appendChild(b);
   });
+  /* первый экран: быстрый выбор ситуации */
+  document.querySelectorAll('.hs-picks [data-pick]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var b = wrap.querySelector('[data-id="' + a.dataset.pick + '"]'); if (!b) return;
+      e.preventDefault(); b.click();
+      $('helper').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    });
+  });
 
   var mail = $('supMail'), text = $('supText');
   function fill(it){

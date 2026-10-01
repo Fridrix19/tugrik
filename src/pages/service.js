@@ -120,7 +120,8 @@
     // общая страница: заполняем тексты из товара
     var name = p.name;
     document.title = name + ' — Tugrik';
-    var h1 = document.querySelector('.svc-h1'); if (h1) { h1.firstChild.textContent = name; var img = h1.querySelector('img'); if (img) { if (p.icon) img.src = p.icon; else img.remove(); } }
+    var h1 = document.querySelector('.hsv-copy h1'); if (h1) h1.textContent = name;
+    var lg = document.querySelector('.hsv-logo'); if (lg) { var img = lg.querySelector('img'); if (p.icon && img) img.src = p.icon; else lg.classList.add('is-empty'); }
     var lead = h1 && h1.nextElementSibling; if (lead) lead.textContent = (p.description ? p.description + ' ' : '') + 'Оплатите виртуальной картой через СБП — данные и инструкция придут на почту и в кабинет.';
     var crumb = document.querySelector('.crumbs [aria-current="page"]'); if (crumb) crumb.textContent = name;
     var cat = MC.CATALOG.categories.filter(function(c){ return c.id === p.category; })[0], cl = document.querySelector('.crumbs a[href*="section/"]');

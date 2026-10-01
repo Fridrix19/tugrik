@@ -33,6 +33,16 @@
     b.addEventListener('click', function(){ topic = t[0]; render(true); });
     topics.appendChild(b);
   });
+  /* первый экран: темы плитками */
+  var ht = $('faqHeroTopics');
+  if (ht) TOPICS.forEach(function(t){
+    if (t[0] === 'all') return;
+    var n = FAQ.filter(function(f){ return f.t === t[0]; }).length;
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'hf-topic';
+    b.innerHTML = '<b>' + n + '</b><span>' + t[1] + '</span>';
+    b.addEventListener('click', function(){ topic = t[0]; render(true); $('faq').scrollIntoView({ behavior: MC.reduce ? 'auto' : 'smooth', block: 'start' }); });
+    ht.appendChild(b);
+  });
 
   function esc(s){ return s.replace(/[&<>]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); }
   function hl(html, needle){

@@ -1,24 +1,18 @@
 <main>
-  <section class="hero wrap svc-hero">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <nav class="crumbs" aria-label="Хлебные крошки">
-          <a href="{{BASE}}catalog.html">Каталог</a><span class="sep">/</span>
-          <span aria-current="page">{{CAT_NAME}}</span>
-        </nav>
-        <h1 class="svc-h1">{{CAT_NAME}}<img class="svc-inline cat-inline" alt="" src="{{CAT_ICON}}"></h1>
-        <p>{{CAT_LEAD}}</p>
-        <div class="facts">
-          <div class="fact"><b>{{CAT_COUNT}}</b><span>{{CAT_COUNT_WORD}}</span></div>
-          <div class="fact"><b>{{CAT_FROM}}</b><span>минимальный план</span></div>
-          <div class="fact"><b>15 мин</b><span>выпуск карты</span></div>
-        </div>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="#list">Выбрать сервис</a>
-          <a class="btn btn-ghost" href="{{BASE}}virtual-card.html">Выпустить карту</a>
-        </div>
-      </div>
-      <div class="hero-visual" aria-hidden="true"></div>
+  <section class="wrap hx hx-sec">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="{{BASE}}catalog.html">Каталог</a><span class="sep">/</span>
+      <span aria-current="page">{{CAT_NAME}}</span>
+    </nav>
+    <div class="hsc-head">
+      <h1 class="svc-h1">{{CAT_NAME}}<img class="svc-inline cat-inline" alt="" src="{{CAT_ICON}}"></h1>
+      <div class="hsc-num"><b>{{CAT_COUNT}}</b><span>{{CAT_COUNT_WORD}}<br>{{CAT_FROM}}</span></div>
+    </div>
+    <p class="hsc-lead">{{CAT_LEAD}}</p>
+    <div class="hsc-wall" aria-label="Сервисы раздела">{{CAT_LOGOS}}</div>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#list">Выбрать сервис</a>
+      <a class="btn btn-ghost" href="{{BASE}}virtual-card.html">Выпустить карту</a>
     </div>
   </section>
 

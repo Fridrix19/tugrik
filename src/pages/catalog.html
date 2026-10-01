@@ -1,32 +1,26 @@
 <main>
-  <section class="hero wrap svc-hero cat-hero">
-    <div class="hero-grid">
-      <div class="hero-copy">
+  <section class="wrap hx hx-cat">
+    <div class="hc-box">
+      <div class="hc-top">
         <span class="eyebrow">Все сервисы</span>
-        <h1>Одна карта — {{SVC_TOTAL}} сервисов</h1>
-        <p>Виртуальная карта в долларах и {{SVC_TOTAL}} сервисов в шести направлениях. Внутри каждого — цены и инструкция по привязке.</p>
-        <div class="facts">
-          <div class="fact"><b>{{SVC_TOTAL}}</b><span>сервисов</span></div>
-          <div class="fact"><b>6</b><span>направлений</span></div>
-          <div class="fact"><b>15 мин</b><span>выпуск карты</span></div>
-        </div>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="virtual-card.html">Выпустить карту</a>
-          <a class="btn btn-ghost" href="#all">Найти сервис</a>
-        </div>
+        <span class="hc-count"><b>{{SVC_TOTAL}}</b> сервисов · 6 направлений · карта за 15 минут</span>
       </div>
-      <div class="hero-visual" aria-hidden="true"></div>
+      <h1>Что оплатим сегодня?</h1>
+      <form class="hc-search" id="catHeroSearch" role="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+        <input type="search" id="catHeroQ" placeholder="Название сервиса — например, Notion" autocomplete="off" aria-label="Найти сервис">
+        <button type="submit" class="btn btn-lime">Найти</button>
+      </form>
+      <div class="hc-chips" id="catChips"></div>
     </div>
   </section>
 
   <div class="wrap stack">
-    <section class="panel reveal" id="dirs">
-      <div class="section-head">
-        <span class="eyebrow">Направления</span>
-        <h2>Выберите раздел</h2>
-        <p>Или сразу выпустите карту нужного номинала — она работает в любом сервисе с оплатой в USD.</p>
+    <section class="reveal" id="dirs">
+      <div class="section-row">
+        <div class="section-head"><span class="eyebrow">Направления</span><h2>Выберите раздел</h2><p>Или сразу выпустите карту — она работает в любом сервисе с оплатой в USD.</p></div>
       </div>
-      <div class="card-grid home-cats cat-dirs" id="catDirs"></div>
+      <div class="dirs" id="catDirs"></div>
     </section>
 
     <section class="panel reveal" id="all">

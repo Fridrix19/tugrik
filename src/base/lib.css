@@ -356,3 +356,59 @@ input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-ou
 .home-cta{margin-block-start:clamp(14px,2vw,22px); padding:clamp(24px,4vw,40px); border:0; border-radius:var(--r-xl); background:var(--lime); color:var(--lime-ink); display:flex; justify-content:space-between; align-items:center; gap:18px 32px; flex-wrap:wrap}
 .home-cta h2{color:var(--lime-ink); font-size:clamp(22px,2.6vw,30px)} .home-cta p{color:var(--lime-ink); opacity:.8; margin-block-start:6px}
 .home-cta .btn-ghost{background:transparent; border-color:var(--lime-ink); color:var(--lime-ink)}
+
+/* ——— Tugrik: разделы каталога — плитки с крупным числом, без подложки ——— */
+.dirs{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(10px,1.4vw,16px)}
+.dir{position:relative; display:flex; flex-direction:column; gap:8px; padding:22px 22px 20px; min-height:250px; background:var(--panel); border-radius:var(--r-xl); box-shadow:var(--card-shadow); text-decoration:none; color:var(--text-3); transition:transform .3s var(--ease), box-shadow .3s var(--ease)}
+.dir:hover{transform:translateY(-4px); box-shadow:0 1px 2px rgba(14,26,19,.05), 0 26px 50px -26px rgba(14,26,19,.32)}
+.dir:focus-visible{outline:2px solid var(--focus); outline-offset:3px}
+.dir-top{display:flex; align-items:baseline; gap:8px; padding-inline-end:48px}
+.dir-n{font-family:var(--font-display); font-weight:700; font-size:clamp(40px,4vw,52px); letter-spacing:-0.06em; line-height:.9; color:var(--text); font-variant-numeric:tabular-nums}
+.dir-nw{font-size:13px; font-weight:700; color:var(--text-4)}
+.dir-go{position:absolute; top:18px; right:18px; width:42px; height:42px; border-radius:50%; display:grid; place-items:center; background:var(--surface); color:var(--text); transition:background .25s, color .25s, rotate .3s var(--ease)}
+.dir-go svg{width:18px; height:18px}
+.dir:hover .dir-go{background:var(--lime); color:var(--lime-ink); rotate:45deg}
+.dir-logos{display:flex; align-items:center; margin-block:14px 6px; padding-inline-start:2px}
+.dir-logos img,.dir-logos .more{width:40px; height:40px; flex:none; border-radius:50%; background:#fff; padding:8px; object-fit:contain; box-shadow:0 0 0 3px var(--panel), 0 4px 10px -4px rgba(14,26,19,.25); margin-inline-start:-10px}
+.dir-logos > :first-child{margin-inline-start:0}
+.dir-logos img.on-dark{background:#14201A}
+.dir-logos .more{display:grid; place-items:center; padding:0; background:var(--mint); color:var(--accent); font-family:var(--font-display); font-weight:700; font-size:12px}
+.dir:hover .dir-logos img{translate:0 -2px}
+.dir-logos img{transition:translate .3s var(--ease)}
+.dir-logos img:nth-child(2){transition-delay:.03s} .dir-logos img:nth-child(3){transition-delay:.06s} .dir-logos img:nth-child(4){transition-delay:.09s}
+.dir h3{font-size:19px; margin-block-start:auto}
+.dir p{margin:0; font-size:14px; line-height:1.5; text-wrap:pretty}
+.dir-from{font-family:var(--font-mono); font-size:12.5px; color:var(--text-4); font-variant-numeric:tabular-nums}
+.dir-from b{color:var(--text); font-weight:600}
+
+/* карта — широкая белая плитка с мини-картой, без цветной подложки */
+.dir-vc{grid-column:span 2; flex-direction:row; align-items:center; gap:24px; overflow:hidden}
+.dir-vc-copy{display:flex; flex-direction:column; gap:8px; flex:1 1 auto; min-width:0; align-self:stretch}
+.dir-vc .dir-k{font-family:var(--font-display); font-weight:700; font-size:12px; color:var(--accent); text-transform:uppercase; letter-spacing:.04em}
+.dir-vc h3{font-size:clamp(22px,2.2vw,28px); margin:0}
+.dir-vc p{max-width:34ch}
+.dir-chips{display:flex; flex-wrap:wrap; gap:6px; margin-block-start:auto}
+.dir-chips span{padding:5px 11px; border-radius:999px; background:var(--surface); font-size:12.5px; font-weight:700; color:var(--text-2)}
+.dir-mini{position:relative; flex:none; width:clamp(150px,15vw,200px); aspect-ratio:85.6/54; margin-inline-end:30px}
+.dm-back,.dm-card{position:absolute; inset:0; border-radius:16px}
+.dm-back{background:var(--lime); rotate:10deg; translate:14% -10%; transition:rotate .4s var(--ease), translate .4s var(--ease)}
+.dm-card{background:var(--ink-950); color:#fff; padding:14px 16px; display:flex; flex-direction:column; justify-content:space-between; rotate:-6deg; box-shadow:0 20px 34px -18px rgba(14,26,19,.6); transition:rotate .4s var(--ease)}
+.dm-card b{font-family:var(--font-display); font-size:14px; letter-spacing:-.02em; color:var(--lime); align-self:flex-end}
+.dm-card em{font-style:normal; font-family:var(--font-mono); font-size:11px; color:#C9D8CF}
+.dm-chip{position:absolute; left:16px; top:16px; width:26px; height:20px; border-radius:5px; background:linear-gradient(135deg,#F1E7B5,#C9B66A)}
+.dir-vc:hover .dm-card{rotate:0deg} .dir-vc:hover .dm-back{rotate:16deg; translate:18% -14%}
+:root[data-mc-theme="dark"] .dm-card{background:#050A07; box-shadow:0 0 0 1px var(--line), 0 20px 34px -18px rgba(0,0,0,.8)}
+:root[data-mc-theme="dark"] .dir-logos img:not(.on-dark){background:#F3F5EE}
+
+@media (max-width:1000px){ .dirs{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:560px){
+  .dirs{gap:8px}
+  .dir{padding:16px 14px 14px; min-height:0; border-radius:24px; gap:6px}
+  .dir-go{width:34px; height:34px; top:12px; right:12px}
+  .dir-n{font-size:34px} .dir-nw{display:none}
+  .dir-logos{margin-block:10px 4px} .dir-logos img,.dir-logos .more{width:32px; height:32px; padding:6px}
+  .dir h3{font-size:16px} .dir p{display:none}
+  .dir-vc{flex-direction:column-reverse; align-items:flex-start; gap:14px; padding:18px 16px}
+  .dir-vc p{display:block}
+  .dir-mini{width:150px; margin:8px 0 6px 6px}
+}

@@ -545,6 +545,197 @@ body.sheet-open{overflow:hidden}
   .foot-bottom{flex-direction:column; align-items:flex-start; gap:10px}
 }
 
+/* ═════════ Tugrik: у каждой страницы свой первый экран ═════════ */
+.hx{position:relative; padding-block:clamp(22px,3.5vw,44px) clamp(14px,2.4vw,26px)}
+.hx h1{text-wrap:balance}
+@media (prefers-reduced-motion:no-preference){
+  .hx > *{animation:hxin .7s var(--ease) both}
+  .hx > :nth-child(2){animation-delay:.06s} .hx > :nth-child(3){animation-delay:.12s} .hx > :nth-child(4){animation-delay:.18s} .hx > :nth-child(5){animation-delay:.24s}
+}
+@keyframes hxin{from{opacity:0; translate:0 12px} to{opacity:1; translate:0 0}}
+
+/* каталог — графитовый блок с большим поиском и чипами разделов */
+.hc-box{background:var(--ink-950); color:#A9BFB1; border-radius:var(--r-xl); padding:clamp(24px,4.5vw,56px); display:flex; flex-direction:column; gap:22px; position:relative; overflow:hidden}
+.hc-box::before{content:""; position:absolute; right:-120px; top:-140px; width:460px; height:460px; border-radius:50%; background:radial-gradient(circle,rgba(200,245,66,.28),transparent 66%); pointer-events:none}
+.hc-box::after{content:""; position:absolute; right:clamp(24px,5vw,64px); top:50%; translate:0 -50%; width:clamp(120px,16vw,220px); aspect-ratio:1; background:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMUZEMDdDIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEE5QTU1Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMiIgeT0iMiIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiByeD0iMjAiIGZpbGw9InVybCgjZykiLz48Y2lyY2xlIGN4PSI0OSIgY3k9IjE1IiByPSI2LjUiIGZpbGw9IiNDOEY1NDIiLz48cGF0aCBkPSJNMTkgMjBoMjYiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMzIgMjB2MjYiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMjMuNSAzNy41bDE3LTZNMjMuNSA0NS41bDE3LTYiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSI0LjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvc3ZnPg==") center/contain no-repeat; rotate:12deg; opacity:.95; pointer-events:none}
+:root[data-mc-theme="dark"] .hc-box{background:#050A07; box-shadow:0 0 0 1px var(--line) inset}
+.hc-top{display:flex; justify-content:space-between; align-items:center; gap:10px 20px; flex-wrap:wrap}
+.hc-box .eyebrow{background:rgba(200,245,66,.14); color:var(--lime)}
+.hc-count{font-size:14px; font-weight:600} .hc-count b{color:#fff; font-family:var(--font-display)}
+.hc-box h1{color:#fff; font-size:clamp(34px,5.4vw,68px); letter-spacing:-0.045em; max-width:14ch}
+.hc-search{display:flex; align-items:center; gap:10px; background:#fff; border-radius:999px; padding:7px 7px 7px 22px; max-width:760px; position:relative; z-index:1}
+.hc-search svg{width:22px; height:22px; color:var(--ink-500); flex:none}
+.hc-search input{flex:1; min-width:0; border:0; background:none; outline:none; font:inherit; font-size:17px; font-weight:600; color:#0E1A13; min-height:50px}
+.hc-search input::placeholder{color:#7A8A81; font-weight:500}
+.hc-search .btn{min-height:50px}
+.hc-chips{display:flex; flex-wrap:wrap; gap:8px; position:relative; z-index:1}
+.hc-chip{display:inline-flex; align-items:center; gap:8px; padding:7px 14px 7px 8px; border-radius:999px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); color:#E6EFE9; text-decoration:none; font-weight:700; font-size:14px; transition:background .2s, color .2s}
+.hc-chip img{width:26px; height:26px; border-radius:50%; background:#fff; padding:4px}
+.hc-chip span{font-family:var(--font-mono); font-size:12px; color:#7F978A; font-weight:500}
+.hc-chip:hover{background:var(--lime); color:var(--lime-ink)} .hc-chip:hover span{color:var(--lime-ink)}
+
+/* вопросы — крупная типографика и темы плитками */
+.hx-faq{display:flex; flex-direction:column; gap:20px}
+.hf-title{font-size:clamp(46px,9vw,124px); line-height:.92; letter-spacing:-0.06em}
+.hf-q{display:inline-grid; place-items:center; width:.9em; height:.9em; border-radius:50%; background:var(--lime); color:var(--lime-ink); font-size:.82em; vertical-align:.04em; rotate:12deg}
+.hf-row{display:flex; justify-content:space-between; align-items:flex-end; gap:14px 30px; flex-wrap:wrap; border-block-start:2px solid var(--text); padding-block-start:18px}
+.hf-row p{margin:0; max-width:56ch; font-size:17px; color:var(--text-3)}
+.hf-topics{display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px}
+.hf-topic{display:flex; flex-direction:column; align-items:flex-start; gap:4px; padding:16px 18px; border-radius:var(--r-lg); background:var(--panel); box-shadow:var(--card-shadow); border:0; font:inherit; cursor:pointer; text-align:start; color:var(--text-2); transition:transform .25s var(--ease), background .2s}
+.hf-topic b{font-family:var(--font-display); font-size:30px; line-height:1; letter-spacing:-0.05em; color:var(--text)}
+.hf-topic span{font-weight:700; font-size:14px}
+.hf-topic:hover{transform:translateY(-3px); background:var(--lime)} .hf-topic:hover b,.hf-topic:hover span{color:var(--lime-ink)}
+
+/* как устроено — маршрут из четырёх остановок */
+.hx-how{display:flex; flex-direction:column; gap:28px}
+.hw-head{display:flex; flex-direction:column; gap:14px; max-width:760px}
+.hw-head h1{font-size:clamp(38px,6vw,80px); letter-spacing:-0.05em; line-height:.98}
+.hw-head p{margin:0; font-size:18px; color:var(--text-3)}
+.hw-route{list-style:none; margin:0; padding:clamp(22px,3vw,34px); display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; background:var(--panel); border-radius:var(--r-xl); box-shadow:var(--card-shadow); position:relative}
+.hw-route li{display:flex; flex-direction:column; gap:4px; position:relative}
+.hw-route li::after{content:""; position:absolute; left:52px; right:-8px; top:47px; height:4px; border-radius:4px; background:repeating-linear-gradient(90deg,var(--accent-solid) 0 10px,transparent 10px 18px)}
+.hw-route li:last-child::after{display:none}
+.hw-t{font-family:var(--font-mono); font-size:12.5px; color:var(--text-4); font-weight:600}
+.hw-dot{width:44px; height:44px; border-radius:50%; display:grid; place-items:center; background:var(--mint); color:var(--accent); font-family:var(--font-display); font-weight:700; font-size:17px; margin-block:4px 8px; position:relative; z-index:1}
+.hw-route li:last-child .hw-dot{background:var(--lime); color:var(--lime-ink)}
+.hw-route b{font-family:var(--font-display); font-size:19px; color:var(--text)}
+.hw-route li > span:last-child{font-size:14px; color:var(--text-3)}
+
+/* поддержка — лаймовый блок с выбором ситуации */
+.hs-box{background:var(--lime); border-radius:var(--r-xl); padding:clamp(24px,4.5vw,56px); display:flex; flex-direction:column; gap:26px; color:var(--lime-ink)}
+.hs-head{display:flex; flex-direction:column; gap:14px}
+.hs-box .eyebrow{background:rgba(28,42,5,.1); color:var(--lime-ink)}
+.hs-box h1{color:var(--lime-ink); font-size:clamp(34px,5.4vw,68px); letter-spacing:-0.045em; max-width:16ch}
+.hs-live{display:inline-flex; align-items:center; gap:10px; font-weight:700; font-size:14.5px}
+.hs-live i{width:9px; height:9px; border-radius:50%; background:var(--accent-solid); box-shadow:0 0 0 4px rgba(18,183,106,.25)}
+.hs-picks{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px}
+.hs-picks a{display:flex; flex-direction:column; gap:4px; padding:18px; border-radius:var(--r-lg); background:#fff; color:#56645B; text-decoration:none; font-size:14px; transition:transform .25s var(--ease)}
+.hs-picks a:hover{transform:translateY(-3px)}
+.hs-picks b{font-family:var(--font-display); font-size:17px; color:#0E1A13; line-height:1.2}
+.hs-n{font-family:var(--font-mono); font-size:12.5px; color:#0A8547; font-weight:600; margin-block-end:14px}
+.hs-picks .hs-tg{background:var(--ink-950); color:#A9BFB1} .hs-picks .hs-tg b{color:#fff} .hs-picks .hs-tg .hs-n{color:var(--lime); font-size:18px; margin-block-end:8px}
+:root[data-mc-theme="dark"] .hs-box{background:#1E2A0A; color:#E8F5C8} :root[data-mc-theme="dark"] .hs-box h1{color:#F2FFD0}
+:root[data-mc-theme="dark"] .hs-box .eyebrow{background:rgba(200,245,66,.14); color:var(--lime)}
+:root[data-mc-theme="dark"] .hs-picks a:not(.hs-tg){background:var(--panel); color:var(--text-3)} :root[data-mc-theme="dark"] .hs-picks a:not(.hs-tg) b{color:var(--text)}
+
+/* контакты — строки с отточием, как визитка */
+.hx-ct{display:flex; flex-direction:column; gap:26px}
+.hct-head{display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:end; gap:14px 24px}
+.hct-head .eyebrow{grid-column:1/-1; justify-self:start}
+.hct-head h1{font-size:clamp(42px,7.4vw,100px); letter-spacing:-0.055em; line-height:.95}
+.hct-status{display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border-radius:999px; background:var(--panel); box-shadow:var(--card-shadow); font-size:14px; color:var(--text-3)}
+.hct-status i{width:9px; height:9px; border-radius:50%; background:var(--accent-solid)}
+.hct-status b{color:var(--text)}
+.hct-lines{display:flex; flex-direction:column; border-block-start:2px solid var(--text)}
+.hct-lines a{display:grid; grid-template-columns:auto minmax(20px,1fr) auto; grid-template-rows:auto auto; align-items:baseline; column-gap:14px; padding-block:18px; border-block-end:1px solid var(--line-strong); text-decoration:none; color:var(--text)}
+.hct-lines b{font-family:var(--font-display); font-size:clamp(22px,3vw,36px); letter-spacing:-0.04em}
+.hct-lines i{border-block-end:2px dotted var(--line-strong); align-self:end; margin-block-end:.5em}
+.hct-lines span{font-family:var(--font-mono); font-size:clamp(14px,1.8vw,19px); color:var(--accent)}
+.hct-lines em{grid-column:1/-1; font-style:normal; font-size:13.5px; color:var(--text-4)}
+.hct-lines a:hover b{color:var(--accent)} .hct-lines a:hover i{border-color:var(--accent-solid)}
+
+/* тарифы — чек по центру */
+.hx-tf{display:flex; flex-direction:column; align-items:center; text-align:center; gap:26px}
+.ht-copy{display:flex; flex-direction:column; align-items:center; gap:14px; max-width:720px}
+.ht-copy .eyebrow{align-self:center}
+.ht-copy h1{font-size:clamp(36px,6vw,76px); letter-spacing:-0.05em; line-height:1}
+.ht-copy p{margin:0; font-size:17.5px; color:var(--text-3)}
+.ht-receipt{position:relative; width:min(100%,440px); background:var(--panel); border-radius:20px 20px 0 0; padding:24px 26px 30px; text-align:start; box-shadow:0 30px 60px -36px rgba(14,26,19,.4); rotate:-1.5deg; font-family:var(--font-mono)}
+.ht-r-head{display:flex; justify-content:space-between; align-items:baseline; padding-block-end:14px; border-block-end:2px dashed var(--line-strong)}
+.ht-r-head b{font-family:var(--font-display); font-size:22px; color:var(--text); letter-spacing:-0.03em}
+.ht-r-head span{font-size:12px; color:var(--text-4)}
+.ht-receipt dl{margin:0; padding-block:12px}
+.ht-receipt dl div{display:flex; justify-content:space-between; gap:12px; padding-block:7px; font-size:14px}
+.ht-receipt dt{color:var(--text-3)} .ht-receipt dd{margin:0; color:var(--text); font-weight:600; font-variant-numeric:tabular-nums}
+.ht-r-total{display:flex; justify-content:space-between; align-items:center; padding-block-start:14px; border-block-start:2px dashed var(--line-strong); font-size:14px; color:var(--text-3)}
+.ht-r-total b{font-family:var(--font-display); font-size:28px; color:var(--text); background:var(--lime); color:var(--lime-ink); padding:2px 12px; border-radius:10px}
+.ht-r-zig{position:absolute; left:0; right:0; bottom:-12px; height:12px; background:linear-gradient(-45deg,transparent 8px,var(--panel) 0) 0 0/16px 12px repeat-x, linear-gradient(45deg,transparent 8px,var(--panel) 0) 0 0/16px 12px repeat-x}
+.ht-cta{justify-content:center; margin-block-start:6px}
+
+/* карта — сцена с картой по центру, текст под ней */
+.hx-vc{display:flex; flex-direction:column; align-items:center; text-align:center; gap:22px}
+.hv-stage{position:relative; width:100%; border-radius:var(--r-xl); background:radial-gradient(70% 90% at 50% 40%,#E3FF7A,var(--lime) 60%,var(--lime-2)); padding:clamp(20px,4vw,48px) 16px clamp(4px,2vw,16px); overflow:hidden; display:grid; place-items:center}
+:root[data-mc-theme="dark"] .hv-stage{background:radial-gradient(70% 90% at 50% 40%,#2B3D0E,#1C2A08 70%)}
+.hv-word{position:absolute; inset:auto 0 -.18em; font-family:var(--font-display); font-weight:700; font-size:clamp(140px,26vw,360px); letter-spacing:-0.07em; line-height:1; color:rgba(28,42,5,.08); pointer-events:none; user-select:none}
+:root[data-mc-theme="dark"] .hv-word{color:rgba(200,245,66,.08)}
+.hx-vc .card-stage{width:min(100%,440px); position:relative; z-index:1}
+.hx-vc .card-float::before{display:none}
+.hv-tag{position:absolute; z-index:2; display:flex; flex-direction:column; align-items:flex-start; padding:10px 16px; border-radius:18px; background:#fff; color:#56645B; font-size:12.5px; font-weight:700; box-shadow:0 20px 40px -24px rgba(28,42,5,.5); text-align:start}
+.hv-tag b{font-family:var(--font-display); font-size:19px; color:#0E1A13; letter-spacing:-0.03em}
+.hv-tag.t1{left:9%; top:22%; rotate:-5deg} .hv-tag.t2{right:9%; top:16%; rotate:4deg} .hv-tag.t3{right:13%; bottom:16%; rotate:-3deg; background:var(--ink-950); color:#A9BFB1} .hv-tag.t3 b{color:var(--lime)}
+.hv-copy{display:flex; flex-direction:column; align-items:center; gap:14px; max-width:720px}
+.hv-copy .eyebrow{align-self:center}
+.hv-copy h1{font-size:clamp(32px,5vw,62px); letter-spacing:-0.045em}
+.hv-copy p{margin:0; font-size:17.5px; color:var(--text-3)}
+.hv-copy .hero-cta{justify-content:center}
+
+/* раздел — заголовок с крупным счётчиком и стеной логотипов */
+.hx-sec{display:flex; flex-direction:column; gap:18px}
+.hsc-head{display:flex; justify-content:space-between; align-items:flex-end; gap:16px 30px; flex-wrap:wrap; border-block-end:2px solid var(--text); padding-block-end:18px}
+.hsc-head h1{font-size:clamp(36px,6vw,80px); letter-spacing:-0.05em}
+.hsc-num{display:flex; align-items:flex-end; gap:12px}
+.hsc-num b{font-family:var(--font-display); font-size:clamp(46px,6vw,84px); line-height:.85; letter-spacing:-0.06em; color:var(--accent)}
+.hsc-num span{font-size:13.5px; font-weight:700; color:var(--text-4); line-height:1.35}
+.hsc-lead{margin:0; max-width:60ch; font-size:17.5px; color:var(--text-3)}
+.hsc-wall{display:flex; flex-wrap:wrap; gap:10px; padding:18px; background:var(--panel); border-radius:var(--r-xl); box-shadow:var(--card-shadow)}
+.hsc-wall a{width:52px; height:52px; border-radius:16px; background:var(--surface); display:grid; place-items:center; transition:transform .25s var(--ease), background .2s}
+.hsc-wall a.on-dark{background:#14201A}
+.hsc-wall img{width:28px; height:28px; object-fit:contain}
+.hsc-wall a:hover{transform:translateY(-3px) rotate(-4deg); background:var(--lime)}
+
+/* сервис — карточка товара: большой логотип, имя, факты строкой */
+.hx-svc{display:flex; flex-direction:column; gap:16px}
+.hsv-card{background:var(--panel); border-radius:var(--r-xl); box-shadow:var(--card-shadow); padding:clamp(20px,3.4vw,40px); display:flex; flex-direction:column; gap:22px}
+.hsv-main{display:flex; align-items:center; gap:clamp(16px,2.6vw,30px)}
+.hsv-logo{width:clamp(76px,9vw,112px); aspect-ratio:1; flex:none; border-radius:28%; background:var(--surface); display:grid; place-items:center; box-shadow:0 0 0 6px var(--mint)}
+.hsv-logo.on-dark{background:#14201A}
+.hsv-logo img{width:58%; height:58%; object-fit:contain}
+.hsv-logo.is-empty{display:none}
+.hsv-copy{display:flex; flex-direction:column; gap:8px; min-width:0}
+.hsv-copy h1{font-size:clamp(32px,4.6vw,58px); letter-spacing:-0.045em}
+.hsv-copy p{margin:0; font-size:16.5px; color:var(--text-3); max-width:64ch}
+.hsv-facts{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0; margin:0; border-block:1px solid var(--line)}
+.hsv-facts .fact{background:none; box-shadow:none; border-radius:0; padding:14px 18px} .hsv-facts .fact + .fact{border-inline-start:1px solid var(--line)}
+.hsv-facts .fact b{font-size:20px}
+.hsv-cta{gap:10px}
+
+@media (max-width:1000px){
+  .hf-topics{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .hs-picks{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hv-tag.t1{left:3%} .hv-tag.t2{right:3%} .hv-tag.t3{right:5%}
+}
+@media (max-width:760px){
+  .hx{padding-block:16px 10px}
+  .hc-box{gap:16px; border-radius:26px} .hc-search{padding-inline-start:14px} .hc-search input{font-size:15.5px; min-height:44px} .hc-search .btn{min-height:44px; padding:0 16px}
+  .hc-chips{flex-wrap:nowrap; overflow-x:auto; margin-inline:-6px; padding-inline:6px; scrollbar-width:none} .hc-chip{flex:none}
+  .hf-topics{grid-template-columns:repeat(2,minmax(0,1fr))} .hf-topic{padding:14px} .hf-topic b{font-size:24px}
+  .hw-route{grid-template-columns:minmax(0,1fr); gap:0; padding:18px 18px 8px}
+  .hw-route li{display:grid; grid-template-columns:44px 1fr; column-gap:14px; padding-block-end:14px}
+  .hw-route li .hw-dot{grid-row:1/4; margin:0} .hw-route li::after{left:20px; right:auto; top:48px; bottom:2px; width:4px; height:auto; background:repeating-linear-gradient(180deg,var(--accent-solid) 0 8px,transparent 8px 14px)}
+  .hw-t{grid-column:2} .hw-route b{font-size:17px}
+  .hs-box{gap:18px; border-radius:26px} .hs-picks a{padding:14px} .hs-n{margin-block-end:6px} .hs-picks b{font-size:15px}
+  .hct-head{grid-template-columns:minmax(0,1fr)} .hct-status{justify-self:start}
+  .hct-lines a{grid-template-columns:1fr; row-gap:2px; padding-block:14px} .hct-lines i{display:none}
+  .ht-receipt{padding:20px 18px 26px}
+  .hv-stage{border-radius:26px; padding-block:24px 4px}
+  .hv-tag{padding:7px 11px; border-radius:14px; font-size:11px} .hv-tag b{font-size:15px}
+  .hv-tag.t1{left:3%; top:6%} .hv-tag.t2{right:3%; top:auto; bottom:10%} .hv-tag.t3{display:none}
+  .hx-vc .card-stage{width:min(100%,300px)}
+  .hsc-wall{gap:7px; padding:12px; border-radius:24px} .hsc-wall a{width:42px; height:42px; border-radius:13px} .hsc-wall img{width:24px; height:24px}
+  .hsv-main{align-items:flex-start} .hsv-card{gap:16px}
+  .hsv-facts{grid-template-columns:minmax(0,1fr)} .hsv-facts .fact + .fact{border-inline-start:0; border-block-start:1px solid var(--line)} .hsv-facts .fact{padding:10px 4px; flex-direction:row; justify-content:space-between; align-items:baseline; gap:10px}
+  .hsv-facts .fact b{font-size:17px}
+  .hx .hero-cta .btn{flex:1 1 auto}
+}
+.hc-chip img.on-dark{background:#1A2A22}
+@media (max-width:1100px){.hc-box::after{display:none}}
+@media (max-width:560px){
+  .hsv-main{display:grid; grid-template-columns:auto minmax(0,1fr); align-items:center; gap:12px 16px}
+  .hsv-copy{display:contents} .hsv-copy p{grid-column:1/-1; font-size:15.5px}
+  .hsv-logo{width:64px; box-shadow:0 0 0 4px var(--mint)}
+  .hv-tag.t2{right:auto; left:4%; bottom:8%}
+}
+
 /* ——— библиотека компонентов: то, что нужно остальным страницам сайта (формы, навигация, карточки, оверлеи) ——— */
 
 /* --- формы: select, textarea, checkbox, radio, switch, поле с кнопкой --- */
@@ -903,6 +1094,62 @@ input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-ou
 .home-cta{margin-block-start:clamp(14px,2vw,22px); padding:clamp(24px,4vw,40px); border:0; border-radius:var(--r-xl); background:var(--lime); color:var(--lime-ink); display:flex; justify-content:space-between; align-items:center; gap:18px 32px; flex-wrap:wrap}
 .home-cta h2{color:var(--lime-ink); font-size:clamp(22px,2.6vw,30px)} .home-cta p{color:var(--lime-ink); opacity:.8; margin-block-start:6px}
 .home-cta .btn-ghost{background:transparent; border-color:var(--lime-ink); color:var(--lime-ink)}
+
+/* ——— Tugrik: разделы каталога — плитки с крупным числом, без подложки ——— */
+.dirs{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(10px,1.4vw,16px)}
+.dir{position:relative; display:flex; flex-direction:column; gap:8px; padding:22px 22px 20px; min-height:250px; background:var(--panel); border-radius:var(--r-xl); box-shadow:var(--card-shadow); text-decoration:none; color:var(--text-3); transition:transform .3s var(--ease), box-shadow .3s var(--ease)}
+.dir:hover{transform:translateY(-4px); box-shadow:0 1px 2px rgba(14,26,19,.05), 0 26px 50px -26px rgba(14,26,19,.32)}
+.dir:focus-visible{outline:2px solid var(--focus); outline-offset:3px}
+.dir-top{display:flex; align-items:baseline; gap:8px; padding-inline-end:48px}
+.dir-n{font-family:var(--font-display); font-weight:700; font-size:clamp(40px,4vw,52px); letter-spacing:-0.06em; line-height:.9; color:var(--text); font-variant-numeric:tabular-nums}
+.dir-nw{font-size:13px; font-weight:700; color:var(--text-4)}
+.dir-go{position:absolute; top:18px; right:18px; width:42px; height:42px; border-radius:50%; display:grid; place-items:center; background:var(--surface); color:var(--text); transition:background .25s, color .25s, rotate .3s var(--ease)}
+.dir-go svg{width:18px; height:18px}
+.dir:hover .dir-go{background:var(--lime); color:var(--lime-ink); rotate:45deg}
+.dir-logos{display:flex; align-items:center; margin-block:14px 6px; padding-inline-start:2px}
+.dir-logos img,.dir-logos .more{width:40px; height:40px; flex:none; border-radius:50%; background:#fff; padding:8px; object-fit:contain; box-shadow:0 0 0 3px var(--panel), 0 4px 10px -4px rgba(14,26,19,.25); margin-inline-start:-10px}
+.dir-logos > :first-child{margin-inline-start:0}
+.dir-logos img.on-dark{background:#14201A}
+.dir-logos .more{display:grid; place-items:center; padding:0; background:var(--mint); color:var(--accent); font-family:var(--font-display); font-weight:700; font-size:12px}
+.dir:hover .dir-logos img{translate:0 -2px}
+.dir-logos img{transition:translate .3s var(--ease)}
+.dir-logos img:nth-child(2){transition-delay:.03s} .dir-logos img:nth-child(3){transition-delay:.06s} .dir-logos img:nth-child(4){transition-delay:.09s}
+.dir h3{font-size:19px; margin-block-start:auto}
+.dir p{margin:0; font-size:14px; line-height:1.5; text-wrap:pretty}
+.dir-from{font-family:var(--font-mono); font-size:12.5px; color:var(--text-4); font-variant-numeric:tabular-nums}
+.dir-from b{color:var(--text); font-weight:600}
+
+/* карта — широкая белая плитка с мини-картой, без цветной подложки */
+.dir-vc{grid-column:span 2; flex-direction:row; align-items:center; gap:24px; overflow:hidden}
+.dir-vc-copy{display:flex; flex-direction:column; gap:8px; flex:1 1 auto; min-width:0; align-self:stretch}
+.dir-vc .dir-k{font-family:var(--font-display); font-weight:700; font-size:12px; color:var(--accent); text-transform:uppercase; letter-spacing:.04em}
+.dir-vc h3{font-size:clamp(22px,2.2vw,28px); margin:0}
+.dir-vc p{max-width:34ch}
+.dir-chips{display:flex; flex-wrap:wrap; gap:6px; margin-block-start:auto}
+.dir-chips span{padding:5px 11px; border-radius:999px; background:var(--surface); font-size:12.5px; font-weight:700; color:var(--text-2)}
+.dir-mini{position:relative; flex:none; width:clamp(150px,15vw,200px); aspect-ratio:85.6/54; margin-inline-end:30px}
+.dm-back,.dm-card{position:absolute; inset:0; border-radius:16px}
+.dm-back{background:var(--lime); rotate:10deg; translate:14% -10%; transition:rotate .4s var(--ease), translate .4s var(--ease)}
+.dm-card{background:var(--ink-950); color:#fff; padding:14px 16px; display:flex; flex-direction:column; justify-content:space-between; rotate:-6deg; box-shadow:0 20px 34px -18px rgba(14,26,19,.6); transition:rotate .4s var(--ease)}
+.dm-card b{font-family:var(--font-display); font-size:14px; letter-spacing:-.02em; color:var(--lime); align-self:flex-end}
+.dm-card em{font-style:normal; font-family:var(--font-mono); font-size:11px; color:#C9D8CF}
+.dm-chip{position:absolute; left:16px; top:16px; width:26px; height:20px; border-radius:5px; background:linear-gradient(135deg,#F1E7B5,#C9B66A)}
+.dir-vc:hover .dm-card{rotate:0deg} .dir-vc:hover .dm-back{rotate:16deg; translate:18% -14%}
+:root[data-mc-theme="dark"] .dm-card{background:#050A07; box-shadow:0 0 0 1px var(--line), 0 20px 34px -18px rgba(0,0,0,.8)}
+:root[data-mc-theme="dark"] .dir-logos img:not(.on-dark){background:#F3F5EE}
+
+@media (max-width:1000px){ .dirs{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:560px){
+  .dirs{gap:8px}
+  .dir{padding:16px 14px 14px; min-height:0; border-radius:24px; gap:6px}
+  .dir-go{width:34px; height:34px; top:12px; right:12px}
+  .dir-n{font-size:34px} .dir-nw{display:none}
+  .dir-logos{margin-block:10px 4px} .dir-logos img,.dir-logos .more{width:32px; height:32px; padding:6px}
+  .dir h3{font-size:16px} .dir p{display:none}
+  .dir-vc{flex-direction:column-reverse; align-items:flex-start; gap:14px; padding:18px 16px}
+  .dir-vc p{display:block}
+  .dir-mini{width:150px; margin:8px 0 6px 6px}
+}
 </style>
 
 <div class="page">
@@ -934,28 +1181,30 @@ input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-ou
 </header>
 
 <main>
-  <section class="hero wrap svc-hero">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <nav class="crumbs" aria-label="Хлебные крошки">
-          <a href="../../catalog.html">Каталог</a><span class="sep">/</span>
-          <a href="../../section/ai/index.html"><img alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSI+IDxkZWZzPiA8cmFkaWFsR3JhZGllbnQgaWQ9ImNvcmUiIGN4PSIwIiBjeT0iMCIgcj0iMSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGdyYWRpZW50VHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzIgMzIpIHJvdGF0ZSg5MCkgc2NhbGUoMTQpIj4gPHN0b3Agc3RvcC1jb2xvcj0iIzZFRTdGRiIvPiA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM3QzVDRkYiLz4gPC9yYWRpYWxHcmFkaWVudD4gPC9kZWZzPiA8Y2lyY2xlIGN4PSIzMiIgY3k9IjMyIiByPSI4LjUiIGZpbGw9InVybCgjY29yZSkiLz4gPGNpcmNsZSBjeD0iMTkiIGN5PSIyMSIgcj0iNC41IiBmaWxsPSIjN0REM0ZDIi8+IDxjaXJjbGUgY3g9IjQ1IiBjeT0iMjEiIHI9IjQuNSIgZmlsbD0iI0E3OEJGQSIvPiA8Y2lyY2xlIGN4PSIxOSIgY3k9IjQzIiByPSI0LjUiIGZpbGw9IiMzOEJERjgiLz4gPGNpcmNsZSBjeD0iNDUiIGN5PSI0MyIgcj0iNC41IiBmaWxsPSIjODE4Q0Y4Ii8+IDxwYXRoIGQ9Ik0yNCAyMy41IDI4IDI3TTQwIDI3bDQtMy41TTI0IDQwLjUgMjggMzdNNDAgMzdsNCAzLjUiIHN0cm9rZT0iI0Y4RkJGRiIgc3Ryb2tlLXdpZHRoPSIyLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPiA8cGF0aCBkPSJNMzEgMTYuNWgyTTMxIDQ1LjVoMk00Ni41IDMxdjJNMTUuNSAzMXYyIiBzdHJva2U9IiNGOEZCRkYiIHN0cm9rZS1vcGFjaXR5PSIwLjc4IiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+IDwvc3ZnPg==">Нейросети</a><span class="sep">/</span>
-          <span aria-current="page">HeyBoss</span>
-        </nav>
-        <h1 class="svc-h1">HeyBoss<img class="svc-inline " alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+IDxpbWFnZSB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeGxpbms6aHJlZj0iZGF0YTppbWFnZS9qcGVnO2Jhc2U2NCwvOWovNEFBUVNrWkpSZ0FCQVFBQUFRQUJBQUQvMndDRUFBa0dCeEFRRUJBUUVCQVZFQTRORUEwTkRRNE5EUThRRUE0TklCY1dGeUFSR1I4WUlEUWdHQ0FuSUJVVklURWhKaXN0THk4dUZ5czFSRDhzT0NnNUxpc0JDZ29LRGcwT0d4QVFHaXNkSHg4dExTMHJMUzB0TFMwdEt5MHRLeTB0TFNzdExTMHRMUzB0TFMwdExTMHRMUzB0TFMwdExTMHRLeTB0TFMwdExTc3RMZi9BQUJFSUFNZ0F5QU1CRVFBQ0VRRURFUUgveEFBYkFBQUNBZ01CQUFBQUFBQUFBQUFBQUFBQUFRSURCQVVHQi8vRUFENFFBQUlDQVFJREJBWUlBd2NGQUFBQUFBRUNBQU1SQkJJRkJpRVRNVUZSQnlKaGNiSHdGSE9Ca2FHeXdkRWpRbElrTWpNMGRKTENGVU5pWkhML3hBQWFBUUVCQUFNQkFRQUFBQUFBQUFBQUFBQUFBUUlEQkFVRy84UUFMaEVCQUFJQ0FRUUJCQUVEQXdVQUFBQUFBQUVDQXhFRUJSSWhNVUVUSWpKUllTTXpjUlFrTkFZVlFxR3gvOW9BREFNQkFBSVJBeEVBUHdEeWFkeUdJQ2dNZnRBQiswQlFDQXpBVWdmejhZRFB6K01CUUdJQkFCSUhBUmdNUUNRRUJtQTRVUUhBVUN2RXpRQVFneEFBSUFQMmhSaUFZa1FHQVloVE1BeENERUI0Z0xFS1lFZ0JBTVFHQkNERWlqRUFNQm1BWWdNaUFRS1ptR0lRb1V4KzBBSDdTQlFDQXpBSURQeitNQWdFQWdFZ2NBRUFnQWdFZ2NLY0FNQWdNd0ZJSzhUTkFCQ0RFQUFnQWhSaUE4UWdJZ0xFS1pnRUlJRHhBTVNBaFFJQmlBd0lCaVFBRUtaZ1BFQXhBQ0lDeElpdkV6QmlBWWdHSUJHZzhRREVBeEFOc0F4QWVJQnRrRDJ3REJnTGJBTVFIdGtEeEFNUURFQWhUQWdHSUNrRHhBcW1hR0lDeEFZZ01DTmd4SnNQRWJEMnhzUGJKc1BiR3diWUJ0Z0cyRUcyQWJaUWJZQmlBZ0lCaVJSQURDZ2lBakFESUNCWE0wTVFnaFVsRWdrb21Ja0VoVWdrbXhQWkpzR3lUWWwyY2JRZG5MdEJzbEJzbFk3TFpLYkd5Vk5sdGxYYUpXRkxiQ2xpRkxFZ1JFS0RJRVlBUkNDUlZjelJJUWhpWXJwTlJJSm9uNlRHWlZhcXpHWlZZdFptTTJOTEJWTVpzYVRGUms3alJtcU81TkRzcGxGbU1qc3BsRXNSMmN6WWJSTmN5ZzJYWnpLRGFPeVpHMENzckpEYkRLRUdXUmtnUklxSkVnREFqbVEwQ1lRc3lLaE0wTlJJSnFKaktycTFtRXlMcTBtRXl1bVFsVTF6WmxwZWxNMXpaWWhldEV3bTVFUzMvQitUOVJxTUhBclE5eldkTWoyRHhubjUrcFk4ZjIrMjJ1RzArM1Y2WDBkNmNBZHBZem54MjRVVHlzbldyeitNYWJJd1I4dFh6bnlycHRMUWxsSWJlMXkxbmUrNGJkcm4vaUoyOU02aGx6Wk8yelR5TWRhVjNEWGNuOHYwNnM2Z1hiaDJOUGFKMmJBZXRuSFhwMW4wbUt1N1JWNVhNeVd4NFp2REM1bDRSWHA3Rld2Y1F5Qmp2SUp6a2o5Qk9qTlNLVzhPRHB2TXZ5S1QzL0RUR21hNDM4UFM3bzE1Uk5VMlFrV1ZtcVo2WmJpRmJWeS9IaG5FeE1LelhHdkhsczlTcFpKTk5rYjlTcVpaSitJUFVLMkVpNjBpMGlhMGpNUUdSQ2dRK2ZHWklzVVRFV29Kaks2WkZhZlBXYXBsbHBsVlZ6VmF6TFRNcXE5bnhtaTE5TXRPaDRSeXRxYjhGYTlxZjEyWlVZKzN2bm41K2ZpeGU1OHRsY1RzZUc4blVVWWExalk0OHZWVUdlUG02bGt5L2o0aDA0OExhR2xIT3l0QjVNK0FTbzg4bnZNNVp0YUkzWjBUWHRodHhPS2RiM0xWTG1mU0NtZEtuMTZma2VleDBiWDFYSnl2eGF2MGYxNE9zLzAvL0lUN1Bpejk4UG4rb1R2alhYOFM0SlZld3N0c0lDcnNGYUFaUFVuY1NlNGRmS2VubXhUZXo1bmc4MnZIeFRyek0vRFgzY3BWWXlydU1qS2x0ckFqejZBUkhIcTIvd0RlTXRaKyt2aG9xT1g3ck5SOUdSUWJPcEpKd2lwMzd5ZkFUVGFPeWRTOS9qOGlNMU8rUFRjMjhwNld0ZjRsN0U5eGZLVkpueUFJT2ZucE45TVU2M1o1ZVhyRnJXN01OZC95eHRkeVlOZ2VoeTI0WlRmZ3JZUFl3bVVVaWZTNCtyNWNWOVpxNjM4bHdua3lxN1NKZlk5aVdOYmJVeURiaGRweDVlK2E4ZjNYN1plaHorb1R4NlZ0WHp0eHZFOUtLN3JheDFGZGxpQW52SUJJejBpMGFsNm5Gdk9YSEY1K1hWOEY1SW8xR2lvMUxXV0s5elhLeXFVMmpheFVZeVBaTWNjZDE1aDUvVmVvWDRuYjIvTGhlSTZjVjIyMWc1RmRsaUFuR1NBU005UGRNYlJwNmZIdjlURkZtSzAxdDhvU01kRVpFTFB6MWtFUWZuck1wWXJVK2UrWVNMNng4OVpydkxMVy9UcStBOG5hdlU0WVY5bldmNTdjcjA4eDV6eWVUMVBIaThiM0xvcGkzN2R2dzMwYzBwZzNXdFlmRUpoVnpQRXpkWnRiOEkwM1Z4UkRvdEh5L3BLTUZLVnlQNW1HNC9qUE55YzNOazl5MlZveWRSckF2UWQvY0FPLzNUWFhITXo5MHVpdUw5c1N6VFdXZ2d1YXR3SVVyZ3VENStVMjQ3MHBiMXRsTm9yK0xrcnVSZGNyRjZPS3ZsaVd4WUhVWit4aVB3bnIxNmp4N1IyMnh0RTJsMFhLT2g0aFN0bzEyb1MvSlRzR3J5U282NXlkbzh4OXhubmMrZVBNeE9LTmZ0anMrZDF6cDArdVg4cnpkMGorNDVPWCtMVzhsSmo2WC9wLzFFK3o0bjV3K2Y1MC93QzN1d2VaTEQ2cUErcVFXSTh6OC9HZWp5N3k4RG8rQ3M3dlB0bmNtTVRUcTYyT1VRVlcxZy95dmtna2UvcDkwMDRMVDlTSHFkUngxdnhyVHIwMjJocENycXJRUFhaTlBWbnhDYm1KSDI5UHVuVmZWczBROGpCa3RYcDk5TkZ4UGd3dmNQWmNWclVBS2lyayswa25vdjR6WmVKbWRKd09kVEJpOFYzWVZjVTB1anFOS09XUXQyaFhkMnJiKzdJSTlVZmhKRklyTzNUbGpsYzZ1b3BxRzM0YnFWdDBTV0lwVlgxRngydGpPY0RyMG11ay93QldUcWVDK0hqWTZXbmVubFhIMHhxYjhqL3ZXbjdOeDYvak1yUkh5K282WnEzSHJNUFN1V3F5bkM5RXJERE45SnRBUGZzTG5CKzBkWmh4L05yUzhEL3FXOFRPT1BsNUR4b2YyalVmWFhmbk14dStqNE1mN2VyWE9KcmwxVDZWbVlzWkIrZStZc1VaQkZSTExGZFdKaEt2U3ZSYnk5VmFHMVZ3RDltd1NwR3hqUDhBVVo4MTFybTNwL1NyNGRtREc5UU55anA1ZUFueTNiTXo1ZGNVMnBmV2laeGkvVGJHR1d2MXVzdFpTS1ZETVBOZ0FEOXM2TWRLZitiS2FkcUhCU1FoN1RyZmttejJEcmdlMGRJenhXYmZiNllmZGIyelRmSjlMZnBsRlAyNTcwaGNTdXA0Zlk5QktzejFvN3IzcFdjZ25QaDREUDhBNVR1NmJ4c2Q4OFJkcnZYVFFlaDdpZW9zczFGVmp2WlNxTFlEWXhmWlpuR0FUNWpQKzJkdlh1TmlwV3MxOFMxYmRyemdQNENmV3IrVjU1M1NQN2pqNXY0dGR5a3YrYStvL1VUN1BpZm5ENTdtL3dESHUxZkh4NjYvL0krSm5meXA4dzhmcEg0enRzZVRoNm1zK3JxK0ptR1B4ZXIwZVgveGJyS3VKcFRlMVZwMjA2bW10V2Z2N093TTIxdmQxT1owNXQ5OFdqNGVkMDNEOWJqV3h6NDJ4K09jSGEzQkQ0T1BWSUphcXhmTUVmR2JvdEYvTGw0MlczQnlUVEpUZjhzT3JnR21ycVkzc1hjNE80dDJhVmoyWS92WitSSkZaN3R5OUszV0wzbnN3MThxZVhlUDBVcmJwYkdZVUd3MjZhNHFUc2ZHQ0dBNjRJSGg5M2xxbXVyOTFYcWN2aFpPWnh0V2pWbHV0LzZhOWd0c2FwM1hIWHREaGg0WkFQWDdmS2IvQUxiZTNoWU1mVStOSDA2UjRiK3E4WFUxNmhXM0pZWFN2QzdRRlU3Y0FlQTZHWVlyVmlaclg0Y1hVZU5tcE5jbkluN3JQRitOL3dDWXYrdXUvTVpwdSs4NE1mN2VyWFBOVXVxZlNrekZoSkdZc1VUSWdXV1dLK3VZeXJ0L1I5ekF1bkwwV050cnRJWldQY3IrUjh2Q2VGMVRoZlYrK0hvY1RMRWVKZWd2cnF3TnhzVUwzNTNEdW56MFlMVDQwOVRkWTh0RHhIbW1zSGJWNjU4VzdoTzdGd2JUSDNPZkp5NjE5TUwvQUsvY3d3TUtQSUNiUDlGU3Y4dWVlVk5uYmNMUWRoV3c3M1VNeDhXYno5czhqSi9kbVAwM1Z0c25VNW5UV1k5dXVOYVhwcDFzVW82aDBjRlhSMURLdzhpRE5NNVp4MjNYMjBaZkhoa2NNNFhScGxLVVZKVXJIY3dyVURjM21mT2N2STVXVE5iNzVjckE1dS93Rit0WDhyenY2UFA5VnhjMzhQRGtSWVJuQkl5TUhCSXlQTHBQcnNmajA4TzNtdXBVMk5udkpQdm5WRnBscGpIRmZTc1dzdWNNUm5vZHBJeVBMcDN6Zmo4c3UzdWpVcUxXSjd5VDd5ZTZkRWIyeng0NHI2OEt4cUhVRUs3S0QzaFdJQlAyVFpFYmpiZjlLdHZ5aGlYMmx2N3pFKzhrelA0ZEdIajByNmh0K1crSDZPK3UxYm54cVN5ZGdoZnMvVXdja0h1WTlSMDcvVm11Wm51ajlKenI1c2VMZUh6S2RuSkkzNE54V3ZQVUdyMXdQTHY2elpOZHg0ZUxIL1VGNlIyM3grWWJualBHYU5IUWxhNEFvcjJhZWpjR2RqM2xteDVuSkptTmFmVDgvTGd0WFAxWFBFOXVxdzhqMURsaVNUa3NTeFB0ODVvbnkrNXBqaWxJaUdPODF6NFR6cFNaaXdrakl3UnhJRUlsRjFabU1qSXFNMVdqZnRsNCtHYlM1NmRaenpTc1R2VFB1L2xuNmR1NmFMZndyWVV2TkZvbGwvaDZaeW5lTE5LZzhheXlINC9yUG1lZFhzeXpQN2RtT3phTnA1enhsbjAzZlVsWlhWaVlYeVRid3dtMHRUcStPdFRjVXNxUFo5TnJLZXA5dnRuYmk0TmN1UHVpZkxyeDhUNmxPNnMrV0h6SnhTbTJoUlcrV0Zpa3FRUXdHMWhuQit5ZDNUZUxreFpmdWg1UFVjR1hIVDdvYWpsNGh0WHB3ZW9OcUFnZ0VIcjdaOU5IbDRWUE45TzY0L3h2UzZOMVN6VDdpNmx3VXJyeDM0OFowMHhXdFNiUFRuQkVZcHlmcGdhUG1maDJvZGFYMCszdENFVTIwMUZOeDZBSEhkNzVPeThSM09XbWFzMjhPYzU5NEVta3NSNnVsZDI3MU1rN0dHTTQ5bldkM0h0OVRITXo3aDZFOGFtYkJiSkhpMWYvQUc1SlZaenRSU3pIdVZRV0orNmJadHA1Mk9KbjJlcjRacWF4dWZUMm92OEFVOU5pakh2SWlsNGwxMHBNejRhbXhwbHAwUldOZWx1bTBtcnVYK0JYZmFxNS93QUd1MTFCOHZWN3UrYTV2RmZjc2JZY2MrNGhydUlhTzZvNHVxZXRqNFcxdWg5L3JTZS9NUzNWeFZpTlJESDAzRDc3eVJSVFpjUjNpbXA3Q1A4QWFPazFXblRDMHhFSWNRNFZxYWY4YlQyMDkvVzZteFB6Q1l4NVR0bTBlR3VNeGxxbUNNakJFeUJnUXhXSk1SZFdmbnJNSlZsMUdhcGhXYlE4NTdReVo5TmswMmhYVzhrY1hGVnZac2NKZGdaUGcvZ1o0L1V1TjNWN285dDJLL3c5Rm56azdpWFNKUGdWMzBLNHd5aGg1TUFmak04V2ExR1ZMeldmRGxlYmVIVlUwcTlhN1dOcXFmV0pHTnJIOUo5QjBybFpNdVRWcGMvVWVSbHlZOVRMUzhzV2YyM1RmWEo4WjlQclR3cVJxejBIbW5sVTYyeEhGd3EyS1Z3YTkrZXVmTVRmanp6V2sxMDlTY204RnNldmJYOEw5SHkxV3BiWnFEWUsyVnhXdFFUY3dPUmtsak1aemVOUkRocGdpSjNNdWU5SU92dXYxTmRCcGFzS2RsUXN4bXhtSUc3cDB4MEU3Y01SVEZPdk8zcjMvcDhhYTE4OTN1ZjhPbDFkdW40SnBWMm9IdnNHQzNjMXIrTEU5NFVlQTlvOTgwWTZXNUZwbWZFUTBjYmpkOFRiMUVlM1A4TTlLRG0wTHFxYXhReDJsNnQ0YXNkMjQ1SkRmaE1yOGJVYnJMQ1k4N3F0NTM1VW8ra2FXNUFFcDFOOU5Wd1RvdUN3Nmozcm43cHN3NXB2am1zKzRlaGh0OWJGYUxmbFgwM25PWEU5Wm9LcXhvTk1yVkt1RGl0bUZZSGhoZTRUUmh4MHlSUGRQbHo0Y1ZMMW1abnk4OTQ5NlNiTlZwVzA5Mm1SYlN3SmRjN2NESi91dGtnNXg0OTJadXgwakZiYmJnL29YN3JlWG9mRUJidzdodFE0WlF0dTFGUFJkMjdLNTdUQ25MRW5IWDJ6bnBXTWxwN3Bhc05hWkx6M3ovaDUvcS9TdnFHcHUwK3IwaWRvNjdGWlE5ZTNyZzdsZk9UalAyaWJLMGpIZUpNY2ZTeVJhWThQTXI3TnpNM1FiaVRnRG9QWk1yVHUyMnZMZnV0TXF6TmZ2eTAvS0orZStBL254aGlrc3hGcUg1NnpHVlgxdE5jd01xcDVybUdUTXF0OXMwelVaVlYrUEh1eDE2OTgxemppM3M3dGVYb3ZLWE5pMkJhYjJBc0dBbGhQUng1SDJ6NXpuOU9tSm05UFRxeDVlNTJFOFNZbXJlY2VCeS9wRGJHbHJQOEE3Q2Zrc250OURpUHJPTG14dWprZVVyYzYvU0RQZmZYOFo5bDhQTHBHck9uOUxGN0xiVGhpUDRaN2lSL05Pdmp4RTRwZXpHdjlKZVhFOE00aHFoYW4wZDdPMkxEWXRaY2xqNVk4WmpxTmVYalVpZmg2cnp5NlYxYVMrNEFQUnFLSFlqcjNlc3dIczlYOEk0dTU3cXg2bDduQjh4YXMrcGhxL1N2b1h0cHB2ckc5RURiaXZYQU8wZys3cDhKczRkbzFhay9MUGkyM2l5WXZtZlR5ZlI2YXkreEthbEwyMk1GUlFEblA2VGJhM2E0b3IrM3J2cEhCcjBXbjBxK3ZjNXJxclZlck93WGIwOTdGZnZtamllN1huMUR0NEVhN3J6NmlISWNMOUoydTBlS2RYU0x3bUYvakI2YndQSW5IWDdSbVRKaHJQbUowNTc0Zm4wNnJtSFI2TGl2RFBwNjFiSEtzNnV5aGJCaGlwVWtkL2NjZklrNDFwakpGSjh3M2NPODJ5Ump0NWlYQzhKNTc0bndrRFRYMWRwVFg2cVY2cEdSMVR3Q041ZS9NbVRERStZYXMyR2Q5MFBRTkhmb3VZTkRiYTJuMldWbDZqMmdCYXEwS0d5ckR2SFVlVTE0cld4MjBtRExOYnhIdzhENGxweFhhNkE5RmJwbnk4dnhuVG1qdHRwbnpNVVk4czFoaTRtbjA1UFpRSERGSlRJSkF6RlZxTk1aZ1gxdk1KaFZ5V1RDWUY2V3pEdFJjTC9iSk5OKzAyNlBndk9tcDA0Q2s5cldQNWJNOUI3RDRUemVUMHJIbC9IdzNWenpIdDFlazlJdW1ZRHRLM3JQamdCK3M4bkowTExINCtXK09SWDVhbm5ibWpUYXJUcFhTekYxdVd3aGtLK3J0Y2Y4QUlUdjZWMDdOZ3liczUrVGtwYVBEbHVCOFVHbjFORjdBc3ROaTJNb0lCWUR3Nno2VFczQkhpZHZSbjlMT2xQZnBIUHZhcy9HU01jL3R1K3JQcFdmUzFwMUIyYUp0MzFpSVB3RXkralA3WlZtSEVjMWM0MzY5dlhBU3RjN0swN2g3ejRtZE5QNmNhaDBSeWZzbWxJMXYyMmZLdnBKdTBsWW91ckdwMDZEYWdMYmJLMS9weWM1SHNQMytFMVh4Ym5jUzAxM0h6NWJrK2xUUjFCbTArZ0syc09ySHNrejd5b3laajlHYlQ5MCtHMnYzVDl6aXRaenhxN05aWHJDVjdTbHQxVmJMdXJVWUkyNFB2UHg3NTBXMTI5bGZUb3ZsKzNzcDRoMWg5S2VpdlVmVGVHTFk0SGZpcTVTZlBGZzlYOFp6VGp0SGlKYU5XOWI4TlZ6TDZVbXVyV2pTYWNhYWxDdUEyMXVnSUlHMERhQjA3cHR4MWlubjNMZGl2WEZPL2MvL0FCbjZmMHQwV29FNGh3OWJpQjFaTmpJeDg5bGc2ZmVacW1reDZscCs2UFU2WTNHZlNyWDJEYWJRYUlhVkdERFBxSUZCNzhLZ3dQZm1aVXBGSjNieXp4V3JqbnV0NWVZWFdsMkxNY3N4Sko5c3l5VDNTd3k1SnkyMmdaSjlNQ2tSTEVNVEVpSkNSVWxNZ3NScE5Lc1Y1am9XSzhuYUxOOG5heE1XR05KNWt6Yk1vaUdNd08xbVVSWDJ4N1kyaWJKbkhqMGE4RnZtV29UU0plWmVHV2tTOHNlR2Y2UjN5N1p4RWFRTFI3bnd6aWQra2QwYm5hN1FKa1hhQmszUHdiL2FMZnZKNFkvd0RKNWhQNGxIRUpNK1BBSWoyUjRqWllrRGtZcENFRUthbUJKVElwaHBCSVBKcEU5OGFCdmpRZmFTNllnMlNwb2paS2FMZk1sMFcrRFJicFZMZERORXRDd1dZRWN3cFpnQmtRakNGSUFtQW9FcEdKaUVHWVUxbERFZ013RE1DUk1BM1FEZEFOMEJib0J1bEMzU3FNd0ZtRkxNRUFHQ1NrVVFBbUVJd0ZBREFJRmtqRW9CbUE4d0NBWmdMTUI1Z0dZVkhNQmd5Z3pBTXdwWmdCTUJaZ1BNSU13Rm1GR1lDZ0dZQmt3RE1BektMTXpGaUJBTXdBR0FDQVpnSW1BRXdETUtSZ09WU2dHWUJtQVpnSVFETUJnd0k1Z0dZQVlVekFXWlFFd0RKZ1RtTEF4Q0NGT1VJU0JRQ0FHQW9COC9HRmd6S3BRQ0VJd29FQWdFQkNBUUNBR1VCTUJRdXpNR3lnV3pGZ1lNSVVLWWxDa0JBTXdBd0ZtQVFzQW1WU3pBTXdoWmhUekFRZ0dZQURBV1lCbVVCL2VBRXdGbUYwQ1lORE1LdG1MV0lRb1ZJUUZLRkpLd0lKQmdnb0RoU01xQ0ZFQlFDQVFGQUJBSlZLQUg5NEEwQlFwbUFRUC8yUT09Ii8+IDwvc3ZnPg=="></h1>
-        <p>Сайты и приложения по описанию. Оплатите подписку виртуальной картой через СБП — реквизиты и инструкция по привязке к HeyBoss придут на почту.</p>
-        <div class="facts">
-          <div class="fact"><b>от $20</b><span>базовая сумма</span></div>
-          <div class="fact"><b>15 мин</b><span>выпуск карты после оплаты</span></div>
-          <div class="fact"><b>1 сценарий</b><span>уточним другой по запросу</span></div>
-        </div>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="#order">Выбрать план</a>
-          <a class="btn btn-ghost" href="#reviews" data-rv-tab>Отзывы <span data-rv-count>0</span></a>
-          <button type="button" class="btn btn-ghost fav-btn" data-fav aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span>В избранное</span></button>
+  <section class="wrap hx hx-svc">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="../../catalog.html">Каталог</a><span class="sep">/</span>
+      <a href="../../section/ai/index.html"><img alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSI+IDxkZWZzPiA8cmFkaWFsR3JhZGllbnQgaWQ9ImNvcmUiIGN4PSIwIiBjeT0iMCIgcj0iMSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGdyYWRpZW50VHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzIgMzIpIHJvdGF0ZSg5MCkgc2NhbGUoMTQpIj4gPHN0b3Agc3RvcC1jb2xvcj0iIzZFRTdGRiIvPiA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM3QzVDRkYiLz4gPC9yYWRpYWxHcmFkaWVudD4gPC9kZWZzPiA8Y2lyY2xlIGN4PSIzMiIgY3k9IjMyIiByPSI4LjUiIGZpbGw9InVybCgjY29yZSkiLz4gPGNpcmNsZSBjeD0iMTkiIGN5PSIyMSIgcj0iNC41IiBmaWxsPSIjN0REM0ZDIi8+IDxjaXJjbGUgY3g9IjQ1IiBjeT0iMjEiIHI9IjQuNSIgZmlsbD0iI0E3OEJGQSIvPiA8Y2lyY2xlIGN4PSIxOSIgY3k9IjQzIiByPSI0LjUiIGZpbGw9IiMzOEJERjgiLz4gPGNpcmNsZSBjeD0iNDUiIGN5PSI0MyIgcj0iNC41IiBmaWxsPSIjODE4Q0Y4Ii8+IDxwYXRoIGQ9Ik0yNCAyMy41IDI4IDI3TTQwIDI3bDQtMy41TTI0IDQwLjUgMjggMzdNNDAgMzdsNCAzLjUiIHN0cm9rZT0iI0Y4RkJGRiIgc3Ryb2tlLXdpZHRoPSIyLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPiA8cGF0aCBkPSJNMzEgMTYuNWgyTTMxIDQ1LjVoMk00Ni41IDMxdjJNMTUuNSAzMXYyIiBzdHJva2U9IiNGOEZCRkYiIHN0cm9rZS1vcGFjaXR5PSIwLjc4IiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+IDwvc3ZnPg==">Нейросети</a><span class="sep">/</span>
+      <span aria-current="page">HeyBoss</span>
+    </nav>
+    <div class="hsv-card">
+      <div class="hsv-main">
+        <span class="hsv-logo "><img alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+IDxpbWFnZSB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeGxpbms6aHJlZj0iZGF0YTppbWFnZS9qcGVnO2Jhc2U2NCwvOWovNEFBUVNrWkpSZ0FCQVFBQUFRQUJBQUQvMndDRUFBa0dCeEFRRUJBUUVCQVZFQTRORUEwTkRRNE5EUThRRUE0TklCY1dGeUFSR1I4WUlEUWdHQ0FuSUJVVklURWhKaXN0THk4dUZ5czFSRDhzT0NnNUxpc0JDZ29LRGcwT0d4QVFHaXNkSHg4dExTMHJMUzB0TFMwdEt5MHRLeTB0TFNzdExTMHRMUzB0TFMwdExTMHRMUzB0TFMwdExTMHRLeTB0TFMwdExTc3RMZi9BQUJFSUFNZ0F5QU1CRVFBQ0VRRURFUUgveEFBYkFBQUNBZ01CQUFBQUFBQUFBQUFBQUFBQUFRSURCQVVHQi8vRUFENFFBQUlDQVFJREJBWUlBd2NGQUFBQUFBRUNBQU1SQkJJRkJpRVRNVUZSQnlKaGNiSHdGSE9Ca2FHeXdkRWpRbElrTWpNMGRKTENGVU5pWkhML3hBQWFBUUVCQUFNQkFRQUFBQUFBQUFBQUFBQUFBUUlEQkFVRy84UUFMaEVCQUFJQ0FRUUJCQUVEQXdVQUFBQUFBQUVDQXhFRUJSSWhNVUVUSWpKUllTTXpjUlFrTkFZVlFxR3gvOW9BREFNQkFBSVJBeEVBUHdEeWFkeUdJQ2dNZnRBQiswQlFDQXpBVWdmejhZRFB6K01CUUdJQkFCSUhBUmdNUUNRRUJtQTRVUUhBVUN2RXpRQVFneEFBSUFQMmhSaUFZa1FHQVloVE1BeENERUI0Z0xFS1lFZ0JBTVFHQkNERWlqRUFNQm1BWWdNaUFRS1ptR0lRb1V4KzBBSDdTQlFDQXpBSURQeitNQWdFQWdFZ2NBRUFnQWdFZ2NLY0FNQWdNd0ZJSzhUTkFCQ0RFQUFnQWhSaUE4UWdJZ0xFS1pnRUlJRHhBTVNBaFFJQmlBd0lCaVFBRUtaZ1BFQXhBQ0lDeElpdkV6QmlBWWdHSUJHZzhRREVBeEFOc0F4QWVJQnRrRDJ3REJnTGJBTVFIdGtEeEFNUURFQWhUQWdHSUNrRHhBcW1hR0lDeEFZZ01DTmd4SnNQRWJEMnhzUGJKc1BiR3diWUJ0Z0cyRUcyQWJaUWJZQmlBZ0lCaVJSQURDZ2lBakFESUNCWE0wTVFnaFVsRWdrb21Ja0VoVWdrbXhQWkpzR3lUWWwyY2JRZG5MdEJzbEJzbFk3TFpLYkd5Vk5sdGxYYUpXRkxiQ2xpRkxFZ1JFS0RJRVlBUkNDUlZjelJJUWhpWXJwTlJJSm9uNlRHWlZhcXpHWlZZdFptTTJOTEJWTVpzYVRGUms3alJtcU81TkRzcGxGbU1qc3BsRXNSMmN6WWJSTmN5ZzJYWnpLRGFPeVpHMENzckpEYkRLRUdXUmtnUklxSkVnREFqbVEwQ1lRc3lLaE0wTlJJSnFKaktycTFtRXlMcTBtRXl1bVFsVTF6WmxwZWxNMXpaWWhldEV3bTVFUzMvQitUOVJxTUhBclE5eldkTWoyRHhubjUrcFk4ZjIrMjJ1RzArM1Y2WDBkNmNBZHBZem54MjRVVHlzbldyeitNYWJJd1I4dFh6bnlycHRMUWxsSWJlMXkxbmUrNGJkcm4vaUoyOU02aGx6Wk8yelR5TWRhVjNEWGNuOHYwNnM2Z1hiaDJOUGFKMmJBZXRuSFhwMW4wbUt1N1JWNVhNeVd4NFp2REM1bDRSWHA3Rld2Y1F5Qmp2SUp6a2o5Qk9qTlNLVzhPRHB2TXZ5S1QzL0RUR21hNDM4UFM3bzE1Uk5VMlFrV1ZtcVo2WmJpRmJWeS9IaG5FeE1LelhHdkhsczlTcFpKTk5rYjlTcVpaSitJUFVLMkVpNjBpMGlhMGpNUUdSQ2dRK2ZHWklzVVRFV29Kaks2WkZhZlBXYXBsbHBsVlZ6VmF6TFRNcXE5bnhtaTE5TXRPaDRSeXRxYjhGYTlxZjEyWlVZKzN2bm41K2ZpeGU1OHRsY1RzZUc4blVVWWExalk0OHZWVUdlUG02bGt5L2o0aDA0OExhR2xIT3l0QjVNK0FTbzg4bnZNNVp0YUkzWjBUWHRodHhPS2RiM0xWTG1mU0NtZEtuMTZma2VleDBiWDFYSnl2eGF2MGYxNE9zLzAvL0lUN1Bpejk4UG4rb1R2alhYOFM0SlZld3N0c0lDcnNGYUFaUFVuY1NlNGRmS2VubXhUZXo1bmc4MnZIeFRyek0vRFgzY3BWWXlydU1qS2x0ckFqejZBUkhIcTIvd0RlTXRaKyt2aG9xT1g3ck5SOUdSUWJPcEpKd2lwMzd5ZkFUVGFPeWRTOS9qOGlNMU8rUFRjMjhwNld0ZjRsN0U5eGZLVkpueUFJT2ZucE45TVU2M1o1ZVhyRnJXN01OZC95eHRkeVlOZ2VoeTI0WlRmZ3JZUFl3bVVVaWZTNCtyNWNWOVpxNjM4bHdua3lxN1NKZlk5aVdOYmJVeURiaGRweDVlK2E4ZjNYN1plaHorb1R4NlZ0WHp0eHZFOUtLN3JheDFGZGxpQW52SUJJejBpMGFsNm5Gdk9YSEY1K1hWOEY1SW8xR2lvMUxXV0s5elhLeXFVMmpheFVZeVBaTWNjZDE1aDUvVmVvWDRuYjIvTGhlSTZjVjIyMWc1RmRsaUFuR1NBU005UGRNYlJwNmZIdjlURkZtSzAxdDhvU01kRVpFTFB6MWtFUWZuck1wWXJVK2UrWVNMNng4OVpydkxMVy9UcStBOG5hdlU0WVY5bldmNTdjcjA4eDV6eWVUMVBIaThiM0xvcGkzN2R2dzMwYzBwZzNXdFlmRUpoVnpQRXpkWnRiOEkwM1Z4UkRvdEh5L3BLTUZLVnlQNW1HNC9qUE55YzNOazl5MlZveWRSckF2UWQvY0FPLzNUWFhITXo5MHVpdUw5c1N6VFdXZ2d1YXR3SVVyZ3VENStVMjQ3MHBiMXRsTm9yK0xrcnVSZGNyRjZPS3ZsaVd4WUhVWit4aVB3bnIxNmp4N1IyMnh0RTJsMFhLT2g0aFN0bzEyb1MvSlRzR3J5U282NXlkbzh4OXhubmMrZVBNeE9LTmZ0anMrZDF6cDArdVg4cnpkMGorNDVPWCtMVzhsSmo2WC9wLzFFK3o0bjV3K2Y1MC93QzN1d2VaTEQ2cUErcVFXSTh6OC9HZWp5N3k4RG8rQ3M3dlB0bmNtTVRUcTYyT1VRVlcxZy95dmtna2UvcDkwMDRMVDlTSHFkUngxdnhyVHIwMjJocENycXJRUFhaTlBWbnhDYm1KSDI5UHVuVmZWczBROGpCa3RYcDk5TkZ4UGd3dmNQWmNWclVBS2lyayswa25vdjR6WmVKbWRKd09kVEJpOFYzWVZjVTB1anFOS09XUXQyaFhkMnJiKzdJSTlVZmhKRklyTzNUbGpsYzZ1b3BxRzM0YnFWdDBTV0lwVlgxRngydGpPY0RyMG11ay93QldUcWVDK0hqWTZXbmVubFhIMHhxYjhqL3ZXbjdOeDYvak1yUkh5K282WnEzSHJNUFN1V3F5bkM5RXJERE45SnRBUGZzTG5CKzBkWmh4L05yUzhEL3FXOFRPT1BsNUR4b2YyalVmWFhmbk14dStqNE1mN2VyWE9KcmwxVDZWbVlzWkIrZStZc1VaQkZSTExGZFdKaEt2U3ZSYnk5VmFHMVZ3RDltd1NwR3hqUDhBVVo4MTFybTNwL1NyNGRtREc5UU55anA1ZUFueTNiTXo1ZGNVMnBmV2laeGkvVGJHR1d2MXVzdFpTS1ZETVBOZ0FEOXM2TWRLZitiS2FkcUhCU1FoN1RyZmttejJEcmdlMGRJenhXYmZiNllmZGIyelRmSjlMZnBsRlAyNTcwaGNTdXA0Zlk5QktzejFvN3IzcFdjZ25QaDREUDhBNVR1NmJ4c2Q4OFJkcnZYVFFlaDdpZW9zczFGVmp2WlNxTFlEWXhmWlpuR0FUNWpQKzJkdlh1TmlwV3MxOFMxYmRyemdQNENmV3IrVjU1M1NQN2pqNXY0dGR5a3YrYStvL1VUN1BpZm5ENTdtL3dESHUxZkh4NjYvL0krSm5meXA4dzhmcEg0enRzZVRoNm1zK3JxK0ptR1B4ZXIwZVgveGJyS3VKcFRlMVZwMjA2bW10V2Z2N093TTIxdmQxT1owNXQ5OFdqNGVkMDNEOWJqV3h6NDJ4K09jSGEzQkQ0T1BWSUphcXhmTUVmR2JvdEYvTGw0MlczQnlUVEpUZjhzT3JnR21ycVkzc1hjNE80dDJhVmoyWS92WitSSkZaN3R5OUszV0wzbnN3MThxZVhlUDBVcmJwYkdZVUd3MjZhNHFUc2ZHQ0dBNjRJSGg5M2xxbXVyOTFYcWN2aFpPWnh0V2pWbHV0LzZhOWd0c2FwM1hIWHREaGg0WkFQWDdmS2IvQUxiZTNoWU1mVStOSDA2UjRiK3E4WFUxNmhXM0pZWFN2QzdRRlU3Y0FlQTZHWVlyVmlaclg0Y1hVZU5tcE5jbkluN3JQRitOL3dDWXYrdXUvTVpwdSs4NE1mN2VyWFBOVXVxZlNrekZoSkdZc1VUSWdXV1dLK3VZeXJ0L1I5ekF1bkwwV050cnRJWldQY3IrUjh2Q2VGMVRoZlYrK0hvY1RMRWVKZWd2cnF3TnhzVUwzNTNEdW56MFlMVDQwOVRkWTh0RHhIbW1zSGJWNjU4VzdoTzdGd2JUSDNPZkp5NjE5TUwvQUsvY3d3TUtQSUNiUDlGU3Y4dWVlVk5uYmNMUWRoV3c3M1VNeDhXYno5czhqSi9kbVAwM1Z0c25VNW5UV1k5dXVOYVhwcDFzVW82aDBjRlhSMURLdzhpRE5NNVp4MjNYMjBaZkhoa2NNNFhScGxLVVZKVXJIY3dyVURjM21mT2N2STVXVE5iNzVjckE1dS93Rit0WDhyenY2UFA5VnhjMzhQRGtSWVJuQkl5TUhCSXlQTHBQcnNmajA4TzNtdXBVMk5udkpQdm5WRnBscGpIRmZTc1dzdWNNUm5vZHBJeVBMcDN6Zmo4c3UzdWpVcUxXSjd5VDd5ZTZkRWIyeng0NHI2OEt4cUhVRUs3S0QzaFdJQlAyVFpFYmpiZjlLdHZ5aGlYMmx2N3pFKzhrelA0ZEdIajByNmh0K1crSDZPK3UxYm54cVN5ZGdoZnMvVXdja0h1WTlSMDcvVm11Wm51ajlKenI1c2VMZUh6S2RuSkkzNE54V3ZQVUdyMXdQTHY2elpOZHg0ZUxIL1VGNlIyM3grWWJualBHYU5IUWxhNEFvcjJhZWpjR2RqM2xteDVuSkptTmFmVDgvTGd0WFAxWFBFOXVxdzhqMURsaVNUa3NTeFB0ODVvbnkrNXBqaWxJaUdPODF6NFR6cFNaaXdrakl3UnhJRUlsRjFabU1qSXFNMVdqZnRsNCtHYlM1NmRaenpTc1R2VFB1L2xuNmR1NmFMZndyWVV2TkZvbGwvaDZaeW5lTE5LZzhheXlINC9yUG1lZFhzeXpQN2RtT3phTnA1enhsbjAzZlVsWlhWaVlYeVRid3dtMHRUcStPdFRjVXNxUFo5TnJLZXA5dnRuYmk0TmN1UHVpZkxyeDhUNmxPNnMrV0h6SnhTbTJoUlcrV0Zpa3FRUXdHMWhuQit5ZDNUZUxreFpmdWg1UFVjR1hIVDdvYWpsNGh0WHB3ZW9OcUFnZ0VIcjdaOU5IbDRWUE45TzY0L3h2UzZOMVN6VDdpNmx3VXJyeDM0OFowMHhXdFNiUFRuQkVZcHlmcGdhUG1maDJvZGFYMCszdENFVTIwMUZOeDZBSEhkNzVPeThSM09XbWFzMjhPYzU5NEVta3NSNnVsZDI3MU1rN0dHTTQ5bldkM0h0OVRITXo3aDZFOGFtYkJiSkhpMWYvQUc1SlZaenRSU3pIdVZRV0orNmJadHA1Mk9KbjJlcjRacWF4dWZUMm92OEFVOU5pakh2SWlsNGwxMHBNejRhbXhwbHAwUldOZWx1bTBtcnVYK0JYZmFxNS93QUd1MTFCOHZWN3UrYTV2RmZjc2JZY2MrNGhydUlhTzZvNHVxZXRqNFcxdWg5L3JTZS9NUzNWeFZpTlJESDAzRDc3eVJSVFpjUjNpbXA3Q1A4QWFPazFXblRDMHhFSWNRNFZxYWY4YlQyMDkvVzZteFB6Q1l4NVR0bTBlR3VNeGxxbUNNakJFeUJnUXhXSk1SZFdmbnJNSlZsMUdhcGhXYlE4NTdReVo5TmswMmhYVzhrY1hGVnZac2NKZGdaUGcvZ1o0L1V1TjNWN285dDJLL3c5Rm56azdpWFNKUGdWMzBLNHd5aGg1TUFmak04V2ExR1ZMeldmRGxlYmVIVlUwcTlhN1dOcXFmV0pHTnJIOUo5QjBybFpNdVRWcGMvVWVSbHlZOVRMUzhzV2YyM1RmWEo4WjlQclR3cVJxejBIbW5sVTYyeEhGd3EyS1Z3YTkrZXVmTVRmanp6V2sxMDlTY204RnNldmJYOEw5SHkxV3BiWnFEWUsyVnhXdFFUY3dPUmtsak1aemVOUkRocGdpSjNNdWU5SU92dXYxTmRCcGFzS2RsUXN4bXhtSUc3cDB4MEU3Y01SVEZPdk8zcjMvcDhhYTE4OTN1ZjhPbDFkdW40SnBWMm9IdnNHQzNjMXIrTEU5NFVlQTlvOTgwWTZXNUZwbWZFUTBjYmpkOFRiMUVlM1A4TTlLRG0wTHFxYXhReDJsNnQ0YXNkMjQ1SkRmaE1yOGJVYnJMQ1k4N3F0NTM1VW8ra2FXNUFFcDFOOU5Wd1RvdUN3Nmozcm43cHN3NXB2am1zKzRlaGh0OWJGYUxmbFgwM25PWEU5Wm9LcXhvTk1yVkt1RGl0bUZZSGhoZTRUUmh4MHlSUGRQbHo0Y1ZMMW1abnk4OTQ5NlNiTlZwVzA5Mm1SYlN3SmRjN2NESi91dGtnNXg0OTJadXgwakZiYmJnL29YN3JlWG9mRUJidzdodFE0WlF0dTFGUFJkMjdLNTdUQ25MRW5IWDJ6bnBXTWxwN3Bhc05hWkx6M3ovaDUvcS9TdnFHcHUwK3IwaWRvNjdGWlE5ZTNyZzdsZk9UalAyaWJLMGpIZUpNY2ZTeVJhWThQTXI3TnpNM1FiaVRnRG9QWk1yVHUyMnZMZnV0TXF6TmZ2eTAvS0orZStBL254aGlrc3hGcUg1NnpHVlgxdE5jd01xcDVybUdUTXF0OXMwelVaVlYrUEh1eDE2OTgxemppM3M3dGVYb3ZLWE5pMkJhYjJBc0dBbGhQUng1SDJ6NXpuOU9tSm05UFRxeDVlNTJFOFNZbXJlY2VCeS9wRGJHbHJQOEE3Q2Zrc250OURpUHJPTG14dWprZVVyYzYvU0RQZmZYOFo5bDhQTHBHck9uOUxGN0xiVGhpUDRaN2lSL05Pdmp4RTRwZXpHdjlKZVhFOE00aHFoYW4wZDdPMkxEWXRaY2xqNVk4WmpxTmVYalVpZmg2cnp5NlYxYVMrNEFQUnFLSFlqcjNlc3dIczlYOEk0dTU3cXg2bDduQjh4YXMrcGhxL1N2b1h0cHB2ckc5RURiaXZYQU8wZys3cDhKczRkbzFhay9MUGkyM2l5WXZtZlR5ZlI2YXkreEthbEwyMk1GUlFEblA2VGJhM2E0b3IrM3J2cEhCcjBXbjBxK3ZjNXJxclZlck93WGIwOTdGZnZtamllN1huMUR0NEVhN3J6NmlISWNMOUoydTBlS2RYU0x3bUYvakI2YndQSW5IWDdSbVRKaHJQbUowNTc0Zm4wNnJtSFI2TGl2RFBwNjFiSEtzNnV5aGJCaGlwVWtkL2NjZklrNDFwakpGSjh3M2NPODJ5Ump0NWlYQzhKNTc0bndrRFRYMWRwVFg2cVY2cEdSMVR3Q041ZS9NbVRERStZYXMyR2Q5MFBRTkhmb3VZTkRiYTJuMldWbDZqMmdCYXEwS0d5ckR2SFVlVTE0cld4MjBtRExOYnhIdzhENGxweFhhNkE5RmJwbnk4dnhuVG1qdHRwbnpNVVk4czFoaTRtbjA1UFpRSERGSlRJSkF6RlZxTk1aZ1gxdk1KaFZ5V1RDWUY2V3pEdFJjTC9iSk5OKzAyNlBndk9tcDA0Q2s5cldQNWJNOUI3RDRUemVUMHJIbC9IdzNWenpIdDFlazlJdW1ZRHRLM3JQamdCK3M4bkowTExINCtXK09SWDVhbm5ibWpUYXJUcFhTekYxdVd3aGtLK3J0Y2Y4QUlUdjZWMDdOZ3liczUrVGtwYVBEbHVCOFVHbjFORjdBc3ROaTJNb0lCWUR3Nno2VFczQkhpZHZSbjlMT2xQZnBIUHZhcy9HU01jL3R1K3JQcFdmUzFwMUIyYUp0MzFpSVB3RXkralA3WlZtSEVjMWM0MzY5dlhBU3RjN0swN2g3ejRtZE5QNmNhaDBSeWZzbWxJMXYyMmZLdnBKdTBsWW91ckdwMDZEYWdMYmJLMS9weWM1SHNQMytFMVh4Ym5jUzAxM0h6NWJrK2xUUjFCbTArZ0syc09ySHNrejd5b3laajlHYlQ5MCtHMnYzVDl6aXRaenhxN05aWHJDVjdTbHQxVmJMdXJVWUkyNFB2UHg3NTBXMTI5bGZUb3ZsKzNzcDRoMWg5S2VpdlVmVGVHTFk0SGZpcTVTZlBGZzlYOFp6VGp0SGlKYU5XOWI4TlZ6TDZVbXVyV2pTYWNhYWxDdUEyMXVnSUlHMERhQjA3cHR4MWlubjNMZGl2WEZPL2MvL0FCbjZmMHQwV29FNGh3OWJpQjFaTmpJeDg5bGc2ZmVacW1reDZscCs2UFU2WTNHZlNyWDJEYWJRYUlhVkdERFBxSUZCNzhLZ3dQZm1aVXBGSjNieXp4V3JqbnV0NWVZWFdsMkxNY3N4Sko5c3l5VDNTd3k1SnkyMmdaSjlNQ2tSTEVNVEVpSkNSVWxNZ3NScE5Lc1Y1am9XSzhuYUxOOG5heE1XR05KNWt6Yk1vaUdNd08xbVVSWDJ4N1kyaWJKbkhqMGE4RnZtV29UU0plWmVHV2tTOHNlR2Y2UjN5N1p4RWFRTFI3bnd6aWQra2QwYm5hN1FKa1hhQmszUHdiL2FMZnZKNFkvd0RKNWhQNGxIRUpNK1BBSWoyUjRqWllrRGtZcENFRUthbUJKVElwaHBCSVBKcEU5OGFCdmpRZmFTNllnMlNwb2paS2FMZk1sMFcrRFJicFZMZERORXRDd1dZRWN3cFpnQmtRakNGSUFtQW9FcEdKaUVHWVUxbERFZ013RE1DUk1BM1FEZEFOMEJib0J1bEMzU3FNd0ZtRkxNRUFHQ1NrVVFBbUVJd0ZBREFJRmtqRW9CbUE4d0NBWmdMTUI1Z0dZVkhNQmd5Z3pBTXdwWmdCTUJaZ1BNSU13Rm1GR1lDZ0dZQmt3RE1BektMTXpGaUJBTXdBR0FDQVpnSW1BRXdETUtSZ09WU2dHWUJtQVpnSVFETUJnd0k1Z0dZQVlVekFXWlFFd0RKZ1RtTEF4Q0NGT1VJU0JRQ0FHQW9COC9HRmd6S3BRQ0VJd29FQWdFQkNBUUNBR1VCTUJRdXpNR3lnV3pGZ1lNSVVLWWxDa0JBTXdBd0ZtQVFzQW1WU3pBTXdoWmhUekFRZ0dZQURBV1lCbVVCL2VBRXdGbUYwQ1lORE1LdG1MV0lRb1ZJUUZLRkpLd0lKQmdnb0RoU01xQ0ZFQlFDQVFGQUJBSlZLQUg5NEEwQlFwbUFRUC8yUT09Ii8+IDwvc3ZnPg=="></span>
+        <div class="hsv-copy">
+          <h1>HeyBoss</h1>
+          <p>Сайты и приложения по описанию. Оплатите подписку виртуальной картой через СБП — реквизиты и инструкция по привязке к HeyBoss придут на почту.</p>
         </div>
       </div>
-      <div class="hero-visual" aria-hidden="true"></div>
+      <div class="facts hsv-facts">
+        <div class="fact"><b>от $20</b><span>базовая сумма</span></div>
+        <div class="fact"><b>15 мин</b><span>выпуск карты после оплаты</span></div>
+        <div class="fact"><b>1 сценарий</b><span>уточним другой по запросу</span></div>
+      </div>
+      <div class="hero-cta hsv-cta">
+        <a class="btn btn-primary" href="#order">Выбрать план</a>
+        <a class="btn btn-ghost" href="#reviews" data-rv-tab>Отзывы <span data-rv-count>0</span></a>
+        <button type="button" class="btn btn-ghost fav-btn" data-fav aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span>В избранное</span></button>
+      </div>
     </div>
   </section>
 
@@ -1610,6 +1859,28 @@ window.MC = (function(){
     });
   }
 
+
+  /* — разделы каталога: плитки с крупным числом и стопкой логотипов (главная и каталог) — */
+  function dirTiles(el, META, o){
+    if (!el) return; o = o || {};
+    var base = o.base || '', GO = '<span class="dir-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>';
+    var vc = document.createElement('a'); vc.className = 'dir dir-vc'; vc.href = base + 'virtual-card.html';
+    vc.innerHTML = '<div class="dir-vc-copy"><span class="dir-k">Для любого сервиса</span><h3>Виртуальная карта</h3><p>Долларовая карта без привязки к каталогу. Выпуск за 15 минут, пополнение по СБП.</p><div class="dir-chips"><span>USD</span><span>$50–200</span><span>многоразовая</span></div></div>'
+      + '<div class="dir-mini" aria-hidden="true"><span class="dm-back"></span><span class="dm-card"><i class="dm-chip"></i><b>tugrik</b><em>4021 •••• 7788</em></span></div>' + GO;
+    el.appendChild(vc);
+    CATALOG.categories.forEach(function(c){
+      var m = (META && META.cats && META.cats[c.id]) || { text: '', top: [] }, shown = 0;
+      var logos = (m.top || []).slice(0, 4).map(function(n){ var s = CATALOG.services.find(function(x){ return x.n === n; }); if (!s) return ''; shown++; return '<img alt="' + s.n + '" title="' + s.n + '"' + (s.d ? ' class="on-dark"' : '') + ' src="' + s.l + '">'; }).join('');
+      var rest = c.count - shown;
+      var a = document.createElement('a'); a.className = 'dir'; a.href = base + 'section/' + c.id + '/index.html';
+      a.innerHTML = '<div class="dir-top"><span class="dir-n">' + c.count + '</span><span class="dir-nw">' + plural(c.count, ['сервис','сервиса','сервисов']) + '</span></div>' + GO
+        + '<div class="dir-logos">' + logos + (rest > 0 ? '<span class="more">+' + rest + '</span>' : '') + '</div>'
+        + '<h3>' + c.name + '</h3><p>' + (m.text || '') + '</p>'
+        + (m.from ? '<span class="dir-from" data-price-cat="' + c.id + '">от <b>$' + m.from + '</b>' + (m.monthly ? ' в месяц' : '') + '</span>' : '');
+      el.appendChild(a);
+    });
+  }
+
   initPaybar();
   initTheme();
   initSession();
@@ -1618,7 +1889,7 @@ window.MC = (function(){
   initTrack();
   initNumbers();
 
-  return { CATALOG: CATALOG, RATE: 80.2254, charged: charged, reduce: reduce, usd: usd, rub: rub, bump: bump, plural: plural, $: $, initShowcase: initShowcase, initReveal: initReveal, api: api, isLive: isLive, kop: kop, uid: uid, me: me, checkout: checkout, liveCatalog: liveCatalog, slugOf: slugOf, vcPricing: vcPricing, site: site, contacts: CONTACTS, docs: DOCS, applyDocs: applyDocs, recipient: recipient, initReviews: initReviews, initFav: initFav };
+  return { CATALOG: CATALOG, RATE: 80.2254, charged: charged, reduce: reduce, usd: usd, rub: rub, bump: bump, plural: plural, $: $, initShowcase: initShowcase, initReveal: initReveal, api: api, isLive: isLive, kop: kop, uid: uid, me: me, checkout: checkout, liveCatalog: liveCatalog, slugOf: slugOf, vcPricing: vcPricing, site: site, contacts: CONTACTS, docs: DOCS, applyDocs: applyDocs, recipient: recipient, initReviews: initReviews, initFav: initFav, dirTiles: dirTiles };
 })();
 
 </script>
@@ -1745,7 +2016,8 @@ window.MC = (function(){
     // общая страница: заполняем тексты из товара
     var name = p.name;
     document.title = name + ' — Tugrik';
-    var h1 = document.querySelector('.svc-h1'); if (h1) { h1.firstChild.textContent = name; var img = h1.querySelector('img'); if (img) { if (p.icon) img.src = p.icon; else img.remove(); } }
+    var h1 = document.querySelector('.hsv-copy h1'); if (h1) h1.textContent = name;
+    var lg = document.querySelector('.hsv-logo'); if (lg) { var img = lg.querySelector('img'); if (p.icon && img) img.src = p.icon; else lg.classList.add('is-empty'); }
     var lead = h1 && h1.nextElementSibling; if (lead) lead.textContent = (p.description ? p.description + ' ' : '') + 'Оплатите виртуальной картой через СБП — данные и инструкция придут на почту и в кабинет.';
     var crumb = document.querySelector('.crumbs [aria-current="page"]'); if (crumb) crumb.textContent = name;
     var cat = MC.CATALOG.categories.filter(function(c){ return c.id === p.category; })[0], cl = document.querySelector('.crumbs a[href*="section/"]');

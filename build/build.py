@@ -228,7 +228,8 @@ def build_section(cid):
     prices=all_prices(); mine=[float(v['v']) for s in services if s['c']==cid for v in [prices.get(s['n'])] if v]
     body=read('pages/section.html')
     for k,v in {'CAT_NAME':cat['name'],'CAT_ICON':cat['icon'],'CAT_LEAD':meta['lead'],'CAT_COUNT':str(cat['count']),
-                'CAT_COUNT_WORD':plural(cat['count'],['сервис','сервиса','сервисов']),'CAT_FROM':('от $%g' % min(mine)) if mine else '—'}.items():
+                'CAT_COUNT_WORD':plural(cat['count'],['сервис','сервиса','сервисов']),'CAT_FROM':('от $%g' % min(mine)) if mine else '—',
+                'CAT_LOGOS':''.join('<a href="{{BASE}}%s" title="%s"%s><img alt="%s" src="%s"></a>' % (s['h'],s['n'],' class="on-dark"' if s['d'] else '',s['n'],s['l']) for s in [x for x in services if x['c']==cid][:30])}.items():
         body=body.replace('{{'+k+'}}',v)
     sub=json.load(open(f'{B}/pages/section-{cid}.json',encoding='utf-8')) if os.path.exists(f'{B}/pages/section-{cid}.json') else {'subcats':[],'items':{}}
     js=read('pages/section.js').replace('/*__SECTION__*/',json.dumps({'cat':cid,'prices':prices,'subcats':sub['subcats'],'items':sub['items']},ensure_ascii=False))
@@ -241,7 +242,7 @@ def build_index():
     prices=all_prices(); pop=[]
     for it in HOME_POPULAR:
         m=prices.get(it['n']); pop.append(dict(it, price=(('от <b>$'+m['v']+'</b>'+(' / мес' if m['m'] else '')) if m else 'по запросу')))
-    js=read('pages/index.js').replace('/*__HOME__*/',json.dumps({'cats':HOME_CATS,'popular':pop},ensure_ascii=False))
+    js=read('pages/index.js').replace('/*__HOME__*/',json.dumps({'cats':cat_meta(),'popular':pop},ensure_ascii=False))
     out=assemble('Tugrik — оплата зарубежных сервисов через СБП', body, js, nav='home', extra_css=read('pages/index.css'))
     emit('index.html',out)
 
@@ -279,11 +280,15 @@ CATALOG_META={
   'international':{'text':'Товары в зарубежных магазинах.','top':['Amazon','eBay','Etsy']},
   'work':{'text':'Офис, разработка и инструменты для команд.','top':['Notion','Microsoft 365','JetBrains','Zoom','Replit']},
 }
-def build_catalog():
+def cat_meta():
     prices=all_prices(); meta={}
     for cid,m in CATALOG_META.items():
         mine=[float(v['v']) for s in services if s['c']==cid for v in [prices.get(s['n'])] if v]
         meta[cid]=dict(m, **{'from':('%g' % min(mine)) if mine else None,'monthly':any(v['m'] for s in services if s['c']==cid for v in [prices.get(s['n'])] if v and float(v['v'])==min(mine))})
+    return meta
+
+def build_catalog():
+    meta=cat_meta()
     body=read('pages/catalog.html').replace('{{SVC_TOTAL}}',str(len(services)))
     js=read('pages/catalog.js').replace('/*__CATALOG_META__*/',json.dumps({'cats':meta},ensure_ascii=False))
     out=assemble('Каталог — Tugrik', body, js, nav='catalog', m_cy='0.21', m_size='0.9', galaxy={'cx':'0.66','cy':'0.42','dx':'0','dy':'0','size':'2.4'},

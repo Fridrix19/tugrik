@@ -1,26 +1,28 @@
 <main>
-  <section class="hero wrap svc-hero">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <nav class="crumbs" aria-label="Хлебные крошки">
-          <a href="{{BASE}}catalog.html">Каталог</a><span class="sep">/</span>
-          <a href="{{BASE}}section/{{CAT_ID}}/index.html"><img alt="" src="{{CAT_ICON}}">{{CAT_NAME}}</a><span class="sep">/</span>
-          <span aria-current="page">{{SVC_NAME}}</span>
-        </nav>
-        <h1 class="svc-h1">{{SVC_NAME}}<img class="svc-inline {{LOGO_CLASS}}" alt="" src="{{SVC_ICON}}"></h1>
-        <p>{{SVC_LEAD}}</p>
-        <div class="facts">
-          <div class="fact"><b>{{FACT1_B}}</b><span>{{FACT1_S}}</span></div>
-          <div class="fact"><b>15 мин</b><span>выпуск карты после оплаты</span></div>
-          <div class="fact"><b>{{FACT3_B}}</b><span>{{FACT3_S}}</span></div>
-        </div>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="#order">Выбрать план</a>
-          <a class="btn btn-ghost" href="#reviews" data-rv-tab>Отзывы <span data-rv-count>0</span></a>
-          <button type="button" class="btn btn-ghost fav-btn" data-fav aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span>В избранное</span></button>
+  <section class="wrap hx hx-svc">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="{{BASE}}catalog.html">Каталог</a><span class="sep">/</span>
+      <a href="{{BASE}}section/{{CAT_ID}}/index.html"><img alt="" src="{{CAT_ICON}}">{{CAT_NAME}}</a><span class="sep">/</span>
+      <span aria-current="page">{{SVC_NAME}}</span>
+    </nav>
+    <div class="hsv-card">
+      <div class="hsv-main">
+        <span class="hsv-logo {{LOGO_CLASS}}"><img alt="" src="{{SVC_ICON}}"></span>
+        <div class="hsv-copy">
+          <h1>{{SVC_NAME}}</h1>
+          <p>{{SVC_LEAD}}</p>
         </div>
       </div>
-      <div class="hero-visual" aria-hidden="true"></div>
+      <div class="facts hsv-facts">
+        <div class="fact"><b>{{FACT1_B}}</b><span>{{FACT1_S}}</span></div>
+        <div class="fact"><b>15 мин</b><span>выпуск карты после оплаты</span></div>
+        <div class="fact"><b>{{FACT3_B}}</b><span>{{FACT3_S}}</span></div>
+      </div>
+      <div class="hero-cta hsv-cta">
+        <a class="btn btn-primary" href="#order">Выбрать план</a>
+        <a class="btn btn-ghost" href="#reviews" data-rv-tab>Отзывы <span data-rv-count>0</span></a>
+        <button type="button" class="btn btn-ghost fav-btn" data-fav aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span>В избранное</span></button>
+      </div>
     </div>
   </section>
 

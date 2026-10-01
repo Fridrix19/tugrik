@@ -1,21 +1,24 @@
 <main>
-  <section class="hero wrap svc-hero faq-hero">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow">Сколько стоит</span>
-        <h1>Тарифы без сюрпризов</h1>
-        <p>Сколько стоит оплата сервиса и выпуск виртуальной карты. Итог в рублях вы видите до оплаты — в нём уже всё учтено.</p>
-        <div class="facts">
-          <div class="fact"><b id="tfRate">80,23 ₽</b><span>курс за $1 сейчас</span></div>
-          <div class="fact"><b>от 100 ₽</b><span>пополнение баланса</span></div>
-          <div class="fact"><b id="tfCard">$50–200</b><span>номинал карты</span></div>
-        </div>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="{{BASE}}catalog.html">Каталог</a>
-          <a class="btn btn-ghost" data-doc="offer" href="{{BASE}}legal-files/offer.pdf" target="_blank" rel="noopener">Оферта</a>
-        </div>
-      </div>
-      <div class="hero-visual" aria-hidden="true"></div>
+  <section class="wrap hx hx-tf">
+    <div class="ht-copy">
+      <span class="eyebrow">Сколько стоит</span>
+      <h1>Тарифы без сюрпризов</h1>
+      <p>Итог в рублях вы видите до оплаты — в нём уже всё учтено. Вот как выглядит любой наш чек:</p>
+    </div>
+    <div class="ht-receipt" role="img" aria-label="Пример расчёта">
+      <div class="ht-r-head"><b>tugrik</b><span>чек · пример</span></div>
+      <dl>
+        <div><dt>Курс за $1</dt><dd id="tfRate">80,23 ₽</dd></div>
+        <div><dt>Номинал карты</dt><dd id="tfCard">$50–200</dd></div>
+        <div><dt>Пополнение баланса</dt><dd>от 100 ₽</dd></div>
+        <div><dt>Комиссия</dt><dd>уже в цене</dd></div>
+      </dl>
+      <div class="ht-r-total"><span>Сюрпризы после оплаты</span><b>0 ₽</b></div>
+      <div class="ht-r-zig" aria-hidden="true"></div>
+    </div>
+    <div class="hero-cta ht-cta">
+      <a class="btn btn-primary" href="{{BASE}}catalog.html">Каталог</a>
+      <a class="btn btn-ghost" data-doc="offer" href="{{BASE}}legal-files/offer.pdf" target="_blank" rel="noopener">Оферта</a>
     </div>
   </section>
 
