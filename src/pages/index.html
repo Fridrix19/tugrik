@@ -1,0 +1,123 @@
+<main>
+  <section class="hero wrap home-hero">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Тугрик за тугриком — без зарубежной карты</span>
+        <h1>Платите за ChatGPT, Netflix и Steam рублями</h1>
+        <p>Выпустим долларовую виртуальную карту за 15 минут и подскажем, как привязать её к сервису. {{SVC_TOTAL}} сервисов в каталоге, оплата по QR через СБП.</p>
+        <form class="hero-search" action="{{BASE}}catalog.html" role="search" id="heroSearch">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+          <input type="search" name="q" id="heroQ" placeholder="Какой сервис оплатить? Например, Figma" autocomplete="off" aria-label="Найти сервис">
+          <button type="submit" class="btn btn-primary btn-sm">Найти</button>
+        </form>
+        <div class="facts">
+          <div class="fact"><b>{{SVC_TOTAL}}</b><span>сервисов</span></div>
+          <div class="fact"><b>15 мин</b><span>до готовой карты</span></div>
+          <div class="fact"><b>0 ₽</b><span>за пополнение</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="card-stage" id="cardStage" role="img" aria-label="Виртуальная карта Tugrik">
+          <div class="card-float">
+            <div class="card-tilt" id="cardTilt">
+              <div class="card-spin">
+                <div class="face face-front">
+                  <span class="orbit"></span><span class="orbit o2"></span>
+                  <span class="f-brand">tugrik</span>
+                  <span class="f-type">USD</span>
+                  <span class="f-chip"></span>
+                  <svg class="f-wave" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M6 8.5a6 6 0 0 1 0 7M9.5 6a10 10 0 0 1 0 12M13 3.5a14 14 0 0 1 0 17"/></svg>
+                  <span class="f-num">4021 •••• •••• 7788</span>
+                  <span class="f-meta"><span>ДО <b>09/29</b></span><span>VIRTUAL</span></span>
+                  <img class="f-logo" src="{{LOGO}}" alt="">
+                </div>
+                <div class="face face-back">
+                  <span class="f-stripe"></span>
+                  <span class="f-sign"></span>
+                  <span class="f-cvc">•••</span>
+                  <span class="f-cvc-label">CVC</span>
+                  <span class="f-back-note">Реквизиты — в кабинете и на почте сразу после выпуска.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-shadow" aria-hidden="true"></div>
+          <div class="hero-sticker" aria-hidden="true"><b>+500 ₽</b><span>бонус за верификацию</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap stack">
+    <!-- популярное: лента логотипов -->
+    <section class="panel reveal home-pop" id="popular">
+      <div class="section-row">
+        <div class="section-head"><span class="eyebrow">Популярное</span><h2>Чем платят чаще всего</h2></div>
+        <a class="btn btn-ghost btn-sm" href="{{BASE}}catalog.html">Все {{SVC_TOTAL}} сервисов</a>
+      </div>
+      <div class="card-grid" id="homePopular"></div>
+    </section>
+
+    <!-- как это работает: тёмная полоса -->
+    <section class="band reveal" id="how">
+      <div class="band-head">
+        <span class="eyebrow">Как это работает</span>
+        <h2>Три шага — и подписка оплачена</h2>
+        <p>Сайт продаёт не подписку, а карту: вы получаете её реквизиты и сами оплачиваете сервис, как обычной картой.</p>
+      </div>
+      <ol class="band-steps">
+        <li><b>Выберите номинал или сервис</b><span>Карта на $50–200 или конкретный тариф — итог в рублях видно сразу.</span></li>
+        <li><b>Оплатите по QR через СБП</b><span>Из приложения любого банка. Курс ЦБ, комиссия — в расчёте до оплаты.</span></li>
+        <li><b>Привяжите карту к сервису</b><span>Номер, срок и CVC появятся в кабинете. Инструкция — для каждого сервиса.</span></li>
+      </ol>
+      <a class="btn btn-lime" href="{{BASE}}how-it-works.html">Подробнее о процессе</a>
+    </section>
+
+    <!-- разделы каталога -->
+    <section class="panel reveal" id="cats">
+      <div class="section-head"><span class="eyebrow">Каталог</span><h2>Разделы</h2><p>Внутри — цены в рублях и пошаговая привязка для каждого сервиса.</p></div>
+      <div class="card-grid home-cats" id="homeCats"></div>
+    </section>
+
+    <!-- почему tugrik -->
+    <section class="home-why reveal">
+      <article class="why-card why-lime"><span class="why-n">500 ₽</span><h3>Бонус за верификацию</h3><p>Подтвердите личность — снимем лимит в 15 000 ₽ и подарим скидку на следующую покупку.</p></article>
+      <article class="why-card"><span class="why-ico">₽</span><h3>Итог — до оплаты</h3><p>Курс ЦБ, комиссия и сумма в рублях видны в расчёте. Никаких списаний потом.</p></article>
+      <article class="why-card"><span class="why-ico">⟳</span><h3>Одна карта — много сервисов</h3><p>Пополняйте ту же карту, номер не меняется. Баланс и история — в кабинете.</p></article>
+      <article class="why-card why-dark"><span class="why-ico">✦</span><h3>Отзывы покупателей</h3><p>Честные оценки после каждой покупки — на страницах сервисов и карты.</p><a href="{{BASE}}virtual-card.html#reviews" class="arrow-link">Читать отзывы →</a></article>
+    </section>
+
+    <!-- вопросы -->
+    <section class="panel reveal home-faq-wrap" id="faq">
+      <div class="faq-aside">
+        <span class="eyebrow">Вопросы</span>
+        <h2>Коротко о главном</h2>
+        <p>Не нашли ответ? Напишите — отвечаем с 9:00 до 22:00 по Москве.</p>
+        <a class="btn btn-ghost btn-sm" href="{{BASE}}faq.html">Все вопросы</a>
+      </div>
+      <div class="acc-list home-faq">
+        <details class="acc" open><summary>Как проходит оплата?<span class="acc-ico" aria-hidden="true"></span></summary><div class="acc-body">Выбираете карту или сервис, указываете почту и платите по QR-коду через СБП. Карта будет готова в течение 15 минут, реквизиты — в кабинете и на почте.</div></details>
+        <details class="acc"><summary>Я оплачиваю сам сервис?<span class="acc-ico" aria-hidden="true"></span></summary><div class="acc-body">Нет — вы покупаете долларовую виртуальную карту. Подписку оплачиваете ею сами, на сайте сервиса.</div></details>
+        <details class="acc"><summary>Есть ли лимиты?<span class="acc-ico" aria-hidden="true"></span></summary><div class="acc-body">Без верификации — до 15 000 ₽ в месяц, отсчёт с первой покупки. После проверки паспорта лимит снимается.</div></details>
+        <details class="acc"><summary>А если сервиса нет в каталоге?<span class="acc-ico" aria-hidden="true"></span></summary><div class="acc-body">Карта работает в любом сервисе с оплатой в долларах, если он не запрещён офертой. Напишите — подскажем.</div></details>
+        <details class="acc"><summary>Письмо с реквизитами не пришло<span class="acc-ico" aria-hidden="true"></span></summary><div class="acc-body">Загляните в «Спам» и в кабинет — реквизиты всегда там. Если и там нет, напишите в поддержку, найдём заказ по почте.</div></details>
+      </div>
+    </section>
+
+    <!-- поддержка и финальный призыв -->
+    <section class="home-final reveal" id="support">
+      <div class="final-copy">
+        <h2>Карта будет готова раньше, чем вы допьёте кофе</h2>
+        <p>Выпуск — до 15 минут. Пополнение — без комиссии с нашей стороны.</p>
+        <div class="hero-cta"><a class="btn btn-primary" href="{{BASE}}virtual-card.html">Выпустить карту</a><a class="btn btn-ghost" href="{{BASE}}catalog.html">Выбрать сервис</a></div>
+      </div>
+      <div class="final-help">
+        <span class="fh-t">Нужна помощь?</span>
+        <a href="https://t.me/tugrik_support" data-contact="tg" target="_blank" rel="noopener"><b>Telegram</b><span data-contact-text="tg">@tugrik_support</span></a>
+        <a href="https://max.ru/tugrik_support" data-contact="max" target="_blank" rel="noopener"><b>Max</b><span data-contact-text="max">tugrik_support</span></a>
+        <a href="mailto:support@tugrik.ru" data-contact="mail"><b>Почта</b><span data-contact-text="mail">support@tugrik.ru</span></a>
+      </div>
+    </section>
+  </div>
+</main>

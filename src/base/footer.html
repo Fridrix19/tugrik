@@ -1,0 +1,41 @@
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-hero">
+      <div class="foot-word">tugrik<span>.</span></div>
+      <p class="foot-about">Платим за вас там, где российские карты не принимают: виртуальная долларовая карта и оплата 139 зарубежных сервисов через СБП.</p>
+    </div>
+    <div class="foot-grid">
+      <div class="foot-col"><h4>Сервис</h4><a href="{{BASE}}virtual-card.html">Виртуальная карта</a><a href="{{BASE}}catalog.html">Все сервисы</a><a href="{{BASE}}how-it-works.html">Как это устроено</a><a href="{{BASE}}tariffs.html" data-doc="tariffs">Тарифы</a></div>
+      <div class="foot-col"><h4>Помощь</h4><a href="{{BASE}}support.html">Решить проблему</a><a href="{{BASE}}faq.html">Вопросы и ответы</a><a href="{{BASE}}contacts.html">Контакты</a><a href="{{BASE}}dashboard.html">Личный кабинет</a></div>
+      <div class="foot-col"><h4>Документы</h4><a href="{{BASE}}legal-files/offer.pdf" data-doc="offer" target="_blank" rel="noopener">Оферта</a><a href="{{BASE}}legal-files/privacy.pdf" data-doc="privacy" target="_blank" rel="noopener">Политика конфиденциальности</a><a href="{{BASE}}tariffs.html" data-doc="tariffs">Тарифы и комиссии</a><a href="{{BASE}}contacts.html#channels">Реквизиты</a></div>
+      <div class="foot-col foot-pay"><h4>Оплата</h4><span class="pay-chip">СБП</span><span class="pay-chip">QR-код</span><span class="pay-chip">Баланс</span></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Tugrik</span>
+      <span>Бета-версия — данные и курс условные</span>
+      <button type="button" class="theme-btn" data-theme-toggle aria-label="Включить тёмную тему" aria-pressed="true">
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5Z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg>
+        <span class="tb-l">Ночной режим</span>
+      </button>
+    </div>
+  </div>
+</footer>
+<!-- мобильное меню: открывается бургером в шапке -->
+<div class="sheet-wrap" id="moreSheet" hidden>
+  <div class="sheet-backdrop" data-sheet-close></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <div class="sheet-head"><h3 id="sheetTitle">Меню</h3><button type="button" class="icon-btn plain" data-sheet-close aria-label="Закрыть"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <a href="{{BASE}}catalog.html" {{CUR_CATALOG}}><i class="si si-1"></i>Сервисы</a>
+    <a href="{{BASE}}virtual-card.html" {{CUR_VC}}><i class="si si-2"></i>Виртуальная карта</a>
+    <a href="{{BASE}}how-it-works.html" {{CUR_HOW}}><i class="si si-3"></i>Как это устроено</a>
+    <a href="{{BASE}}faq.html"><i class="si si-4"></i>Вопросы</a>
+    <a href="{{BASE}}support.html" {{CUR_SUPPORT}}><i class="si si-5"></i>Помощь</a>
+    <a href="{{BASE}}contacts.html"><i class="si si-6"></i>Контакты</a>
+    <a href="{{BASE}}tariffs.html" data-doc="tariffs"><i class="si si-7"></i>Тарифы</a>
+    <span class="sheet-sep"></span>
+    <a href="{{BASE}}login.html" class="sheet-login btn btn-dark">Войти в кабинет</a>
+    <label class="toggle sheet-theme"><input type="checkbox" role="switch" id="sheetTheme"><span class="knob"></span><span>Ночной режим</span></label>
+  </div>
+</div>
+</div>

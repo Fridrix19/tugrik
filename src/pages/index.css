@@ -1,0 +1,94 @@
+/* ——— главная Tugrik ——— */
+.home-hero .eyebrow{background:var(--panel-solid)}
+.hero-search{display:flex; align-items:center; gap:8px; padding:6px 6px 6px 18px; background:var(--panel-solid); border-radius:999px; box-shadow:0 1px 2px rgba(14,26,19,.06), 0 18px 40px -26px rgba(14,26,19,.35); max-width:540px; border:1.5px solid transparent}
+.hero-search:focus-within{border-color:var(--accent-solid)}
+.hero-search svg{width:20px; height:20px; color:var(--text-3); flex:none}
+.hero-search input{flex:1; min-width:0; border:0; background:none; font:inherit; font-size:16px; font-weight:600; color:var(--text); min-height:44px; outline:none}
+.hero-search input::placeholder{color:var(--text-4); font-weight:500}
+.hero-search .btn{min-height:44px}
+.hero-sticker{position:absolute; left:-4%; bottom:2%; z-index:2; background:var(--ink-950); color:#C9D8CF; border-radius:20px; padding:12px 16px; display:flex; flex-direction:column; rotate:-6deg; box-shadow:0 20px 40px -20px rgba(14,26,19,.6)}
+.hero-sticker b{font-family:var(--font-display); color:var(--lime); font-size:22px; letter-spacing:-0.03em; line-height:1.1}
+.hero-sticker span{font-size:12.5px; font-weight:700}
+
+.section-row{display:flex; justify-content:space-between; align-items:flex-end; gap:16px 24px; flex-wrap:wrap; margin-block-end:26px}
+.section-row .section-head{margin:0}
+#homePopular{grid-template-columns:repeat(4,minmax(0,1fr))}
+.home-pop .svc-card{background:var(--surface)}
+.home-pop .svc-card .badge{background:var(--panel-solid)}
+@media (max-width:1000px){#homePopular{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){#homePopular{grid-template-columns:1fr 1fr; gap:8px} #homePopular .svc-card{padding:16px} #homePopular .svc-card p{display:none}}
+
+/* тёмная полоса «как это работает» */
+.band{background:var(--ink-950); color:#A9BFB1; border-radius:var(--r-xl); padding:clamp(28px,5vw,60px); display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:28px 56px; align-items:start; position:relative; overflow:hidden}
+.band::after{content:""; position:absolute; right:-80px; top:-80px; width:260px; height:260px; border-radius:50%; background:radial-gradient(circle,color-mix(in oklab,var(--lime) 45%,transparent),transparent 70%); opacity:.35; pointer-events:none}
+:root[data-mc-theme="dark"] .band{background:#050A07; box-shadow:0 0 0 1px var(--line)}
+.band-head{display:flex; flex-direction:column; gap:14px}
+.band-head h2{color:#fff}
+.band-head p{font-size:16px}
+.band .eyebrow{background:rgba(200,245,66,.14); color:var(--lime)}
+.band-steps{margin:0; padding:0; list-style:none; counter-reset:b; display:flex; flex-direction:column; gap:12px; grid-row:span 2}
+.band-steps li{counter-increment:b; display:grid; grid-template-columns:auto 1fr; gap:2px 18px; padding:20px; border-radius:22px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08)}
+.band-steps li::before{content:counter(b); grid-row:span 2; width:46px; height:46px; border-radius:50%; display:grid; place-items:center; background:var(--lime); color:var(--lime-ink); font-family:var(--font-display); font-weight:700; font-size:18px}
+.band-steps b{color:#fff; font-size:17px}
+.band-steps span{font-size:14.5px}
+.band > .btn{justify-self:start; align-self:end}
+
+/* разделы каталога: бенто */
+.home-cats{grid-template-columns:repeat(4,minmax(0,1fr))}
+.cat-vc{grid-column:span 2; grid-row:span 2; background:linear-gradient(135deg,#25D585,#0A8547)!important; color:#E8FFF2}
+.cat-vc h3,.cat-vc .cat-count{color:#fff} .cat-vc p{color:rgba(255,255,255,.85)!important}
+.cat-vc .cat-ico{background:var(--lime)!important; color:var(--lime-ink)}
+.cat-vc .cat-count{background:rgba(255,255,255,.18)!important}
+.cat-vc .badge{background:rgba(255,255,255,.18)!important; color:#fff!important}
+.cat-vc:hover{filter:brightness(1.05)}
+.cat-card .cat-count{white-space:nowrap}
+.cat-card .cat-ico-vc svg{width:26px; height:26px}
+.cat-vc .cat-tags{margin-block-start:auto}
+@media (max-width:1000px){.home-cats{grid-template-columns:repeat(2,minmax(0,1fr))} .cat-vc{grid-row:auto}}
+@media (max-width:620px){.home-cats{grid-template-columns:minmax(0,1fr)} .cat-vc{grid-column:auto}}
+
+/* почему tugrik */
+.home-why{display:grid; grid-template-columns:1.2fr 1fr 1fr 1.2fr; gap:clamp(12px,1.6vw,18px)}
+.why-card{background:var(--panel); border-radius:var(--r-xl); padding:26px; display:flex; flex-direction:column; gap:10px; box-shadow:var(--card-shadow)}
+.why-card p{font-size:14.5px; color:var(--text-3)}
+.why-ico{width:46px; height:46px; border-radius:16px; display:grid; place-items:center; background:var(--mint); color:var(--accent); font-family:var(--font-display); font-weight:700; font-size:20px}
+.why-n{font-family:var(--font-display); font-weight:700; font-size:clamp(34px,4vw,48px); letter-spacing:-0.05em; color:var(--lime-ink); line-height:1}
+.why-lime{background:var(--lime)} .why-lime h3,.why-lime p{color:var(--lime-ink)}
+.why-dark{background:var(--ink-950)} .why-dark h3{color:#fff} .why-dark p{color:#A9BFB1} .why-dark .why-ico{background:rgba(200,245,66,.14); color:var(--lime)} .why-dark .arrow-link{color:var(--lime); margin-block-start:auto}
+:root[data-mc-theme="dark"] .why-dark{background:#050A07}
+@media (max-width:1000px){.home-why{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.home-why{grid-template-columns:minmax(0,1fr)}}
+
+/* вопросы: две колонки */
+.home-faq-wrap{display:grid; grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr); gap:24px 48px; align-items:start}
+.faq-aside{display:flex; flex-direction:column; gap:14px; position:sticky; top:100px}
+.faq-aside p{color:var(--text-3)}
+.faq-aside .btn{align-self:flex-start}
+.home-faq{max-width:none}
+.home-faq .acc-body{max-width:none}
+
+/* финал */
+.home-final{display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr); gap:18px}
+.final-copy{background:linear-gradient(135deg,#25D585,#0A8547); color:#E8FFF2; border-radius:var(--r-xl); padding:clamp(28px,5vw,56px); display:flex; flex-direction:column; gap:16px}
+.final-copy h2{color:#fff; font-size:clamp(24px,3vw,36px)}
+.final-copy p{font-size:16.5px}
+.final-copy .btn-primary{background:var(--ink-950); color:#fff}
+.final-copy .btn-ghost{background:transparent; color:#fff; border-color:rgba(255,255,255,.5)}
+.final-copy .btn-ghost:hover{border-color:#fff}
+.final-help{background:var(--panel); border-radius:var(--r-xl); padding:22px; display:flex; flex-direction:column; gap:8px; box-shadow:var(--card-shadow)}
+.fh-t{font-family:var(--font-display); font-weight:700; color:var(--text); font-size:18px; padding:4px 8px 8px}
+.final-help a{display:flex; justify-content:space-between; align-items:center; gap:10px; padding:14px 16px; border-radius:18px; background:var(--surface); text-decoration:none; color:var(--text-2); flex-wrap:wrap}
+.final-help a b{color:var(--text)}
+.final-help a span{font-family:var(--font-mono); font-size:13.5px; color:var(--accent)}
+.final-help a:hover{background:var(--mint)}
+
+@media (max-width:980px){
+  .band{grid-template-columns:minmax(0,1fr)} .band-steps{grid-row:auto}
+  .home-faq-wrap{grid-template-columns:minmax(0,1fr)} .faq-aside{position:static}
+  .home-final{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:760px){
+  .hero-search{padding-inline-start:14px} .hero-search .btn{padding:0 14px}
+  .hero-sticker{left:0; bottom:-6px; padding:9px 12px} .hero-sticker b{font-size:18px}
+  .band-steps li{padding:16px; gap:2px 14px} .band-steps li::before{width:38px; height:38px; font-size:15px}
+}
