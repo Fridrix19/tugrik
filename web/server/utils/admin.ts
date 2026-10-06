@@ -1,6 +1,6 @@
 import type { H3Event } from 'h3'
 
-export const ADM_COOKIE = 'mc_adm'
+export const ADM_COOKIE = 'tg_adm'
 const HOURS = 12
 export type AdminRole = 'owner' | 'senior' | 'operator' | 'kyc'
 export type Admin = { id: string; login: string; name: string; role: AdminRole; must_change: boolean; session_id: string }

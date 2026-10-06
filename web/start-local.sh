@@ -13,8 +13,8 @@ export NUXT_DATABASE_URL="${NUXT_DATABASE_URL:-postgres://localhost/tugrik}"
 export DATABASE_URL="$NUXT_DATABASE_URL"
 export NUXT_SECRET="${NUXT_SECRET:-local-dev-secret-change-me}"
 export NUXT_DEV_CODES=true
-export NUXT_PUBLIC_SITE_URL=http://localhost:3000
 export PORT="${PORT:-3000}"
+export NUXT_PUBLIC_SITE_URL="http://localhost:$PORT"
 
 psql -h localhost -lqt | cut -d'|' -f1 | grep -qw tugrik || { createdb -h localhost tugrik && echo "✓ создана база tugrik"; }
 [ -d node_modules ] || npm ci
