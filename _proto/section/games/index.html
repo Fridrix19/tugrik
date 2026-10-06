@@ -736,6 +736,30 @@ body.sheet-open{overflow:hidden}
   .hv-tag.t2{right:auto; left:4%; bottom:8%}
 }
 
+/* ——— хлебные крошки + «Назад»: тонкая строка под шапкой ——— */
+.crumbbar{padding-block:14px 0}
+.cb-row{display:flex; align-items:center; gap:14px; min-width:0}
+.cb-back{flex:none; display:inline-flex; align-items:center; gap:7px; min-height:36px; padding:0 15px 0 12px; border-radius:999px; background:var(--panel); border:1px solid var(--line-strong); color:var(--text); font-size:14px; font-weight:700; text-decoration:none; box-shadow:0 1px 2px var(--shadow); transition:background .2s var(--ease), border-color .2s var(--ease)}
+.cb-back span{display:grid; place-items:center; width:22px; height:22px; border-radius:50%; background:var(--lime); color:var(--lime-ink); font-size:13px; line-height:1}
+.cb-back:hover{border-color:var(--text-3); background:var(--surface)}
+.cb-back:focus-visible{outline:2px solid var(--focus); outline-offset:2px}
+.cb-list{list-style:none; margin:0; padding:0; display:flex; align-items:center; flex-wrap:wrap; gap:4px 0; min-width:0; font-size:14px; font-weight:600; color:var(--text-4)}
+.cb-list li{display:inline-flex; align-items:center; min-width:0}
+.cb-list li + li::before{content:""; width:6px; height:6px; margin:0 11px 0 9px; border-top:1.6px solid var(--text-4); border-right:1.6px solid var(--text-4); transform:rotate(45deg); opacity:.7}
+.cb-list a{color:var(--text-3); text-decoration:none; border-radius:6px}
+.cb-list a:hover{color:var(--accent)}
+.cb-list [aria-current]{color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:40ch}
+.crumbbar + main .hx{padding-block-start:clamp(16px,2.4vw,28px)}
+@media (max-width:640px){
+  .crumbbar{padding-block:10px 0}
+  .cb-row{gap:10px}
+  .cb-back{min-height:34px; padding:0 12px 0 9px; font-size:13.5px}
+  .cb-list{font-size:13px; flex-wrap:nowrap; overflow:hidden}
+  .cb-list li:not(:last-child):not(:nth-last-child(2)){display:none}
+  .cb-list li:nth-last-child(2)::before{display:none}
+  .cb-list [aria-current]{max-width:22ch}
+}
+
 /* ——— библиотека компонентов: то, что нужно остальным страницам сайта (формы, навигация, карточки, оверлеи) ——— */
 
 /* --- формы: select, textarea, checkbox, radio, switch, поле с кнопкой --- */
@@ -1334,13 +1358,10 @@ input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-ou
     </div>
   </div>
 </header>
+<nav class="crumbbar" aria-label="Вы здесь"><div class="wrap cb-row"><a class="cb-back" href="../../catalog.html" data-back><span aria-hidden="true">←</span> Назад</a><ol class="cb-list"><li><a href="../../index.html">Главная</a></li><li><a href="../../catalog.html">Каталог</a></li><li><span aria-current="page">Игры</span></li></ol></div></nav>
 
 <main>
   <section class="wrap hx hx-sec">
-    <nav class="crumbs" aria-label="Хлебные крошки">
-      <a href="../../catalog.html">Каталог</a><span class="sep">/</span>
-      <span aria-current="page">Игры</span>
-    </nav>
     <div class="hsc-head">
       <h1 class="svc-h1">Игры<img class="svc-inline cat-inline" alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSI+IDxkZWZzPiA8bGluZWFyR3JhZGllbnQgaWQ9InBhZCIgeDE9IjE4IiB5MT0iMjAiIHgyPSI0NiIgeTI9IjQ4IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+IDxzdG9wIHN0b3AtY29sb3I9IiMzOEJERjgiLz4gPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjODE4Q0Y4Ii8+IDwvbGluZWFyR3JhZGllbnQ+IDwvZGVmcz4gPHBhdGggZD0iTTIwIDIzLjVoMjQuMmM1LjIgMCA5LjQgNS4zIDguMiAxMC4ybC0yIDguNGMtLjggMy41LTUuMiA0LjgtNy44IDIuM2wtNC40LTQuMkgyNS44bC00LjQgNC4yYy0yLjYgMi41LTcgMS4yLTcuOC0yLjNsLTItOC40Yy0xLjItNC45IDMtMTAuMiA4LjQtMTAuMloiIGZpbGw9InVybCgjcGFkKSIgZmlsbC1vcGFjaXR5PSIwLjI1IiBzdHJva2U9IiNGOEZCRkYiIHN0cm9rZS13aWR0aD0iMi44IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+IDxwYXRoIGQ9Ik0yMyAyOXY5TTE4LjUgMzMuNWg5IiBzdHJva2U9IiNGOEZCRkYiIHN0cm9rZS13aWR0aD0iMi44IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4gPGNpcmNsZSBjeD0iNDIuNSIgY3k9IjMxLjUiIHI9IjIuNiIgZmlsbD0iIzYwQTVGQSIvPiA8Y2lyY2xlIGN4PSI0OCIgY3k9IjM3IiByPSIyLjYiIGZpbGw9IiNDMDg0RkMiLz4gPC9zdmc+"></h1>
       <div class="hsc-num"><b>13</b><span>сервисов<br>от $10</span></div>
@@ -1966,8 +1987,19 @@ window.MC = (function(){
     });
   }
 
+
+  /* — «Назад» в хлебных крошках: если пришли с этого же сайта — шаг назад по истории, иначе — на уровень выше по ссылке — */
+  function initBack(){
+    document.addEventListener('click', function(e){
+      var a = e.target.closest && e.target.closest('[data-back]'); if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
+      var same = false; try { same = !!document.referrer && new URL(document.referrer).origin === location.origin; } catch (_) {}
+      if ((same || a.hasAttribute('data-back-hist')) && history.length > 1) { e.preventDefault(); history.back(); }
+    });
+  }
+
   initPaybar();
   initTheme();
+  initBack();
   initSession();
   syncCatalog();
   initSite();
