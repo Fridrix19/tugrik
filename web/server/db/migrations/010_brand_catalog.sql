@@ -1,0 +1,3 @@
+-- свой набор сервисов у бренда (тот же список — build/brand/exclude.json): товары без заказов удаляем, с заказами — скрываем
+delete from products p where p.slug in ('character-ai','chaton','ebay','flair','freepik','game-pass','genspark','loom','microsoft-365','qobuz','qodo','sentry','sider','spline','suno','weshop','you-com') and not exists (select 1 from orders o where o.product_id = p.id);
+update products set active = false where slug in ('character-ai','chaton','ebay','flair','freepik','game-pass','genspark','loom','microsoft-365','qobuz','qodo','sentry','sider','spline','suno','weshop','you-com');

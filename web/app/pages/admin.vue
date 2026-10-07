@@ -2,6 +2,7 @@
 import logo from '~/assets/logo.svg?url'
 // оболочка админки: проверка входа, верхняя навигация в два уровня со счётчиками, быстрый поиск, обязательная смена пароля
 const { api, me, can } = useAdm()
+const beta = !!(useRuntimeConfig().public as any).beta   // бета: вход admin / admin, без смены пароля
 const route = useRoute()
 const ready = ref(false)
 const counts = ref<any>({})
@@ -17,7 +18,7 @@ async function loadMe() {
 async function loadCounts() { if (me.value.admin) counts.value = await api('GET', '/summary', undefined, { quiet: true }).catch(() => ({})) }
 let cT: any
 onUnmounted(() => clearInterval(cT))
-onMounted(async () => { await loadMe(); ready.value = true; cT = setInterval(() => { if (!isLogin.value && document.visibilityState === 'visible') loadCounts() }, 30000); if (me.value.admin?.must_change) pw.open = true; else loadCounts() })
+onMounted(async () => { await loadMe(); ready.value = true; cT = setInterval(() => { if (!isLogin.value && document.visibilityState === 'visible') loadCounts() }, 30000); if (me.value.admin?.must_change && !beta) pw.open = true; else loadCounts() })
 watch(() => route.path, () => { if (!isLogin.value) loadCounts() })
 
 // навигация в два уровня: группы сверху, разделы группы — вкладками под ними
@@ -92,7 +93,7 @@ async function changePw() {
         <button type="button" class="tg-av" :aria-expanded="menu" @click="menu = !menu">{{ initials }}</button>
         <div v-if="menu" class="tg-menu" @click="menu = false">
           <div class="tg-menu-h"><b>{{ me.admin.name }}</b><span class="mono">{{ me.admin.login }} · {{ ROLE[me.admin.role] }}</span></div>
-          <button type="button" @click="pw.open = true"><i class="pi pi-key" />Сменить пароль</button>
+          <button v-if="!beta" type="button" @click="pw.open = true"><i class="pi pi-key" />Сменить пароль</button>
           <button type="button" @click="logout"><i class="pi pi-sign-out" />Выйти</button>
         </div>
       </div>
@@ -106,12 +107,12 @@ async function changePw() {
       <NuxtLink v-if="queueTotal && current?.id !== 'queue'" :to="groups.find(g => g.id === 'queue')?.to || '/admin/orders'" class="tg-q"><i />В очереди {{ queueTotal }}</NuxtLink>
     </div>
     <main class="adm-main">
-      <div v-if="me.admin.must_change" class="banner"><i class="pi pi-exclamation-triangle warn" />
+      <div v-if="me.admin.must_change && !beta" class="banner"><i class="pi pi-exclamation-triangle warn" />
         <span>Вы вошли с временным паролем{{ me.admin.login === 'admin' ? ' admin/admin' : '' }}. Смените его, прежде чем работать дальше.</span>
         <Button size="small" label="Сменить пароль" @click="pw.open = true" />
       </div>
-      <AdmCrumbs v-if="!me.admin.must_change" />
-      <NuxtPage v-if="!me.admin.must_change" @changed="loadCounts" />
+      <AdmCrumbs v-if="!me.admin.must_change || beta" />
+      <NuxtPage v-if="!me.admin.must_change || beta" @changed="loadCounts" />
     </main>
   </div>
   <Dialog v-model:visible="pw.open" modal header="Смена пароля" :style="{ width: 'min(420px, 94vw)' }">
